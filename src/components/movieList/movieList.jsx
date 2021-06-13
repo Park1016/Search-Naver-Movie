@@ -8,7 +8,7 @@ const MovieList = memo(({movie}) => {
 
     return (
         <div>
-            <h2>{movie.title}</h2>
+            <h2>{movie.title.replace(/<\/b>/gi,'').replace(/<b>/gi,' ')}</h2>
             <h2>{movie.link}</h2>
             <img src={movie.image} />
         </div>
