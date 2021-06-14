@@ -5,13 +5,18 @@ import MovieList from './components/movieList/movieList';
 import { v4 as uuid } from 'uuid';
 import FirstPage from './components/firstPage/firstPage';
 import Input from './components/input/input';
-
+import Options from './components/options/options';
+import { symbol } from 'prop-types';
 
 // let movieItems = [];
 const App = memo((props) => {
   const [movie, setMovie] = useState([]);
   let [prevQuery, setPrevQuery] = useState('');
   let [query, setQuery] = useState('');
+  let [to, setTo] = useState('');
+  let [from, setFrom] = useState('');
+  let [display, setDisplay] = useState(10);
+  let [country, setCountry] = useState('');
 
 
 
@@ -25,8 +30,11 @@ const App = memo((props) => {
     redirect: 'follow'
   };
   
-  async function onLoad(q){
-    const search = await fetch(`/v1/search/movie.json?query=${q}&display=10`, requestOptions);
+  async function onLoad(q, display, country, from, to){
+    const search =
+    await fetch(
+      `/v1/search/movie.json?query=${q}&display=10&country=${country}&yearfrom=${from}&yearto=${to}`,
+    requestOptions);
     const response = await search.json();
     // console.log('onLoad함수 : ', q);
     return response;
@@ -43,7 +51,7 @@ const App = memo((props) => {
       return;
     }
     if(prevQuery != query){
-      onLoad(query).then((result)=>setMovie(result));
+      onLoad(query,display,country,from,to).then((result)=>setMovie(result));
       setPrevQuery(query);
       // console.log('------------------2222222----------------------');
       // console.log('2prevQuery :', prevQuery);
@@ -82,11 +90,20 @@ const App = memo((props) => {
           <Route exact path="/">
               <FirstPage />
           </Route>
-          <Route path="/movieList">        
-              <Input input={onInput}/>
-              {movieItem && movieItem.map((item)=>
-                <MovieList key={uuid()} movie={item}/>
-              )}
+          <Route path="/movieList">    
+              <section className={styles.moviePage}> 
+                <Input input={onInput}/>
+                <div className={styles.optionsAndMovie}> 
+                  <div className={styles.options}> 
+                    <Options />
+                  </div>
+                  <div className={styles.movieList}>
+                    {movieItem && movieItem.map((item)=>
+                    <MovieList key={uuid()} movie={item}/>
+                    )}
+                  </div>
+                </div>
+              </section> 
           </Route>
         </Switch>
       </Router>

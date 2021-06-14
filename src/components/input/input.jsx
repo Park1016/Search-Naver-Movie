@@ -1,9 +1,9 @@
 ﻿import React, { memo } from 'react';
+import styles from './input.module.css';
 
 const Input = memo(({input}) => {
 
     const onKeyDown = (e) => {
-        // e.preventDefault();
         const target = e.target;
         if(e === 'Enter'){
             if(!target.value){
