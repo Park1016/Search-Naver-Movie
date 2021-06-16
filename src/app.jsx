@@ -5,16 +5,18 @@ import MovieList from './components/movieList/movieList';
 import { v4 as uuid } from 'uuid';
 import FirstPage from './components/firstPage/firstPage';
 import Input from './components/input/input';
-import Options from './components/options/options';
+import YearPick from './components/yearPick/yearPick';
+import CountryCode from './components/countryCode/countryCode';
 import { symbol } from 'prop-types';
 
 // let movieItems = [];
 const App = memo((props) => {
   const [movie, setMovie] = useState([]);
   let [prevQuery, setPrevQuery] = useState('');
+  let [prevYear, setPrevYear] = useState({from: '', to: ''});
+
   let [query, setQuery] = useState('');
-  let [to, setTo] = useState('');
-  let [from, setFrom] = useState('');
+  let [year, setYear] = useState({from: '', to: ''});
   let [display, setDisplay] = useState(10);
   let [country, setCountry] = useState('');
 
@@ -33,7 +35,7 @@ const App = memo((props) => {
   async function onLoad(q, display, country, from, to){
     const search =
     await fetch(
-      `/v1/search/movie.json?query=${q}&display=10&country=${country}&yearfrom=${from}&yearto=${to}`,
+      `/v1/search/movie.json?query=${q}&display=${display}&country=${country}&yearfrom=${from}&yearto=${to}`,
     requestOptions);
     const response = await search.json();
     // console.log('onLoad함수 : ', q);
@@ -44,15 +46,23 @@ const App = memo((props) => {
 
 
   useEffect(()=>{
-    if(prevQuery == query){
+    if(prevQuery == query | prevYear == year){
       // console.log('------------------333333---------------------');
+      // console.log(year, prevYear);
       // console.log('3prevQuery :', prevQuery);
       // console.log('3query :', query);
       return;
     }
-    if(prevQuery != query){
-      onLoad(query,display,country,from,to).then((result)=>setMovie(result));
+    if(prevQuery != query | prevYear != year){
+      // console.log(query,display,country,year);
+      console.log(year, prevYear);
+      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
       setPrevQuery(query);
+
+      setPrevYear({from: year.from, to: year.to});
+
+
+      console.log(year, prevYear);
       // console.log('------------------2222222----------------------');
       // console.log('2prevQuery :', prevQuery);
       // console.log('2query :', query);
@@ -70,6 +80,12 @@ const App = memo((props) => {
   });
   
 
+  const onYear = useCallback((smallYear, largeYear) => {
+    setYear({from: smallYear, to: largeYear});
+    console.log(year, prevYear);
+    // setFrom(smallYear);
+    // setTo(largeYear);
+  });
 
   const onCheck = () => {
     if(movie!=undefined){
@@ -78,6 +94,7 @@ const App = memo((props) => {
       return movieItems;
     }
   };
+
   
   let movieItems = onCheck();
   let movieItem = movieItems.items;
@@ -93,10 +110,15 @@ const App = memo((props) => {
           <Route path="/movieList">    
               <section className={styles.moviePage}> 
                 <Input input={onInput}/>
-                <div className={styles.optionsAndMovie}> 
-                  <div className={styles.options}> 
-                    <Options />
-                  </div>
+                <div className={styles.optionsAndMovie}>
+                  <div className={styles.options}>
+                    <div className={styles.yearPick}> 
+                      <YearPick onYear={onYear}/>
+                    </div>
+                    <div className={styles.countryCode}>
+                      <CountryCode />
+                    </div>                   
+                  </div> 
                   <div className={styles.movieList}>
                     {movieItem && movieItem.map((item)=>
                     <MovieList key={uuid()} movie={item}/>

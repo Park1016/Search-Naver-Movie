@@ -1,1 +1,6 @@
-﻿
+﻿.content {
+  width: 15rem;
+  height: 20rem;
+  margin: 2rem 1rem;
+  background-color: aliceblue;
+}

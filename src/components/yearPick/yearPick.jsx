@@ -1,6 +1,6 @@
 ﻿import React, { memo } from 'react';
-import styles from './options.module.css';
-import './options.css';
+import styles from './yearPick.module.css';
+import './yearPick.css';
 import { Rate, DatePicker, Space } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -8,12 +8,12 @@ let year = new Date().getFullYear();
 let firstYear = 0;
 let lastYear = 1;
 
-const Options = memo((props) => {
+const YearPick = memo(({onYear}) => {
     const { RangePicker } = DatePicker;
 
     const onInputClick = (e) => {
         const target = e.target.textContent;
-        if(!e.target.classList.contains('ant-picker-cell-inner')|target.length != 4){
+        if(!e.target.classList.contains('ant-picker-cell-inner')|target.length !== 4){
             return;
         }   
         if(firstYear < lastYear){
@@ -43,8 +43,9 @@ const Options = memo((props) => {
             smallYear = lastYear;
             largeYear = firstYear;
         }
-        console.log('fl  ' + firstYear, lastYear);
-        console.log('sl  ' + smallYear, largeYear);
+        // console.log('fl  ' + firstYear, lastYear);
+        // console.log('sl  ' + smallYear, largeYear);
+        onYear(smallYear, largeYear);
     }
 
     const onTotal = (e) => {
@@ -62,4 +63,4 @@ const Options = memo((props) => {
     )
 })
 
-export default Options;
+export default YearPick;
