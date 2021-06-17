@@ -3,47 +3,33 @@ import styles from './countryCode.module.css';
 import { Select } from 'antd';
 
 
-const CountryCode = (props) => {
+const CountryCode = ({onCode}) => {
     
     const { Option } = Select;
-    let korean = /[가-힣]/gm;
 
     const onChange = (input) => {
-        if(input.length > 3 | input.search(korean) >= 0){
-            // console.log(input.search(korean));
+        if(input == undefined){
             return;
-        }
-        if(input == 'ALL'){
-            console.log('all!!');
-            return "";
         }
         console.log(input);
     }
 
     const onClick = (e) => {
-        const target = e.currentTarget.firstElementChild.lastElementChild.textContent;
-        // console.log(target);
+        if(e.currentTarget.firstElementChild.lastElementChild == null){
+            return;
+        }
+        const target = e.currentTarget.firstElementChild.lastElementChild.value;
         onChange(target);
     }
-    
-    return (
-        // <select onClick={(e)=>{onClick(e)}}>
-        //     <option value="all">all</option>
-        //     <option value="KR">한국</option>
-        //     <option value="JP">일본</option>
-        //     <option value="US">미국</option>
-        //     <option value="HK">홍콩</option>
-        //     <option value="GB">영국</option>
-        //     <option value="FR">프랑스</option>
-        //     <option value="ETC">기타</option>
-        // </select>
 
+
+    return (
         <Select
             onChange={onChange}
             onClick={(e)=>onClick(e)}
             showSearch
-            style={{ width: 200 }}
-            placeholder="Search to Select"
+            placeholder="국가별 검색"
+            // style={{ width: 200 }}
             // optionFilterProp="children"
             // filterOption={(input, option) =>
             // option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -52,7 +38,7 @@ const CountryCode = (props) => {
             // optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
             // }
         >
-            <Option value="ALL">All</Option>
+            <Option value="">All</Option>
             <Option value="KR">한국</Option>
             <Option value="JP">일본</Option>
             <Option value="US">미국</Option>

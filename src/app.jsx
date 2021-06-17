@@ -7,6 +7,7 @@ import FirstPage from './components/firstPage/firstPage';
 import Input from './components/input/input';
 import YearPick from './components/yearPick/yearPick';
 import CountryCode from './components/countryCode/countryCode';
+import Display from './components/display/display';
 import { symbol } from 'prop-types';
 
 // let movieItems = [];
@@ -87,6 +88,15 @@ const App = memo((props) => {
     // setTo(largeYear);
   });
 
+  const onCode = useCallback((code) => {
+    setCountry(code);
+    console.log(code);
+  });
+
+  const onDisplay = useCallback((num) => {
+    setDisplay(num);
+  });
+
   const onCheck = () => {
     if(movie!=undefined){
       let movieItems = [];
@@ -116,8 +126,11 @@ const App = memo((props) => {
                       <YearPick onYear={onYear}/>
                     </div>
                     <div className={styles.countryCode}>
-                      <CountryCode />
-                    </div>                   
+                      <CountryCode onCode={onCode}/>
+                    </div> 
+                    <div className={styles.display}>
+                      <Display onDisplay={onDisplay}/>
+                    </div>                    
                   </div> 
                   <div className={styles.movieList}>
                     {movieItem && movieItem.map((item)=>
