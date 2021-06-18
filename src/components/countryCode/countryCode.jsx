@@ -3,7 +3,7 @@ import styles from './countryCode.module.css';
 import { Select } from 'antd';
 
 
-const CountryCode = ({onCode}) => {
+const CountryCode = ({onCountry}) => {
     
     const { Option } = Select;
 
@@ -11,7 +11,7 @@ const CountryCode = ({onCode}) => {
         if(input == undefined){
             return;
         }
-        console.log(input);
+        onCountry(input);
     }
 
     const onClick = (e) => {

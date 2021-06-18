@@ -15,9 +15,18 @@ const App = memo((props) => {
   const [movie, setMovie] = useState([]);
   let [prevQuery, setPrevQuery] = useState('');
   let [prevYear, setPrevYear] = useState({from: '', to: ''});
+  // let prevYear = {from: '', to: ''};
+  // let [prevStart, setPrevStart] = useState('');
+  // let [prevEnd, setPrevEnd] = useState('');
+  let [prevDisplay, setPrevDisplay] = useState('');
+  let [prevCountry, setPrevCountry] = useState('');
+
 
   let [query, setQuery] = useState('');
   let [year, setYear] = useState({from: '', to: ''});
+  // let year = {from: '', to: ''};
+  // let [start, setStart] = useState('');
+  // let [end, setEnd] = useState('');
   let [display, setDisplay] = useState(10);
   let [country, setCountry] = useState('');
 
@@ -46,56 +55,116 @@ const App = memo((props) => {
 
 
 
-  useEffect(()=>{
-    if(prevQuery == query | prevYear == year){
-      // console.log('------------------333333---------------------');
-      // console.log(year, prevYear);
-      // console.log('3prevQuery :', prevQuery);
-      // console.log('3query :', query);
-      return;
-    }
-    if(prevQuery != query | prevYear != year){
-      // console.log(query,display,country,year);
-      console.log(year, prevYear);
-      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
-      setPrevQuery(query);
-
-      setPrevYear({from: year.from, to: year.to});
-
-
-      console.log(year, prevYear);
-      // console.log('------------------2222222----------------------');
-      // console.log('2prevQuery :', prevQuery);
-      // console.log('2query :', query);
-    }
-  });
+  // useEffect(()=>{
+  //   if(prevQuery == query){
+  //     // console.log(year, prevYear);
+  //     // console.log('------------------333333---------------------');
+  //     // console.log('3prevQuery :', prevQuery);
+  //     // console.log('3query :', query);
+  //     return;
+  //   }
+  //   if(prevQuery != query){
+  //     console.log(query,display,country,year);
+  //     console.log(query, prevQuery);
+  //     console.log(year, prevYear);
+  //     onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
+      
+  //     setPrevQuery(query);
+  //     setPrevYear({from: year.from, to: year.to});
 
 
+  //     // console.log(year, prevYear);
+  //     // console.log('------------------2222222----------------------');
+  //     // console.log('2prevQuery :', prevQuery);
+  //     // console.log('2query :', query);
+  //   }
+  // });
 
 
-  const onInput = useCallback((query) => {
+
+
+  const onInput = (query) => {
     setQuery(query);
     // console.log('----------------1111111--------------------');
     // console.log('1prevQuery :', prevQuery);
     // console.log('1query :', query);
-  });
+    OnInputMount();
+  };
+
+  function OnInputMount(){
+    if(prevQuery == query){
+      return;
+    }
+    if(prevQuery != query){
+      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));      
+      // onLoad(query, display, country, start, end).then((result)=>setMovie(result));  
+      setPrevQuery(query);
+    }
+  };
   
 
-  const onYear = useCallback((smallYear, largeYear) => {
+  const onYear = (smallYear, largeYear) => {
+    console.log(smallYear, largeYear);
     setYear({from: smallYear, to: largeYear});
-    console.log(year, prevYear);
+    setYear((year)=>{
+      OnYearMount(year);
+    })
+    // year = {from: smallYear, to: largeYear};
+    // console.log(prevYear, year);
+    // console.log(year, prevYear);
     // setFrom(smallYear);
     // setTo(largeYear);
-  });
+  };
 
-  const onCode = useCallback((code) => {
+  function OnYearMount(year){
+    if(prevYear == year){
+      return;
+    }
+    if(prevYear != year){
+      
+      console.log(prevYear, year);
+      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
+      // onLoad(query, display, country, start, end).then((result)=>setMovie(result));     
+      // console.log(prevStart, start);
+      // console.log(prevEnd, end);
+      setPrevYear(year);
+      // prevYear = year;
+    }
+  };
+
+  const onCountry = (code) => {
     setCountry(code);
-    console.log(code);
-  });
+    // console.log(code);
+    OnCountryMount();
+  };
 
-  const onDisplay = useCallback((num) => {
+  function OnCountryMount(){
+    if(prevCountry == country){
+      return;
+    }
+    if(prevCountry != country){
+      console.log(year.from);
+      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));     
+      // onLoad(query, display, country, start, end).then((result)=>setMovie(result));   
+      setPrevCountry(country);
+    }
+  };
+
+  const onDisplay = (num) => {
     setDisplay(num);
-  });
+    OnDisplayMount();
+  };
+
+  function OnDisplayMount(){
+    if(prevDisplay == display){
+      return;
+    }
+    if(prevDisplay != display){
+      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
+      // onLoad(query, display, country, start, end).then((result)=>setMovie(result));       
+      setPrevDisplay(display);
+    }
+  };
 
   const onCheck = () => {
     if(movie!=undefined){
@@ -104,6 +173,18 @@ const App = memo((props) => {
       return movieItems;
     }
   };
+
+  
+
+  useEffect(()=>{
+    if(query == ''){
+      return;
+    }
+    // OnInputMount();
+    // OnYearMount();
+    // OnCountryMount();
+    // OnDisplayMount();
+  });
 
   
   let movieItems = onCheck();
@@ -126,7 +207,7 @@ const App = memo((props) => {
                       <YearPick onYear={onYear}/>
                     </div>
                     <div className={styles.countryCode}>
-                      <CountryCode onCode={onCode}/>
+                      <CountryCode onCountry={onCountry}/>
                     </div> 
                     <div className={styles.display}>
                       <Display onDisplay={onDisplay}/>
