@@ -10,7 +10,7 @@ import CountryCode from './components/countryCode/countryCode';
 import Display from './components/display/display';
 import { symbol } from 'prop-types';
 
-// let movieItems = [];
+
 const App = memo((props) => {
   const [movie, setMovie] = useState([]);
   let [prevQuery, setPrevQuery] = useState('');
@@ -96,7 +96,7 @@ const App = memo((props) => {
       return;
     }
     if(prevQuery != query){
-      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));      
+      onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));      
       // onLoad(query, display, country, start, end).then((result)=>setMovie(result));  
       setPrevQuery(query);
     }
@@ -117,6 +117,9 @@ const App = memo((props) => {
   };
 
   function OnYearMount(year){
+    // if(year == undefined){
+    //   return;
+    // }
     if(prevYear == year){
       return;
     }
@@ -135,34 +138,47 @@ const App = memo((props) => {
   const onCountry = (code) => {
     setCountry(code);
     // console.log(code);
-    OnCountryMount();
+    setCountry((code)=>{
+      OnCountryMount(code);
+    })
+    // OnCountryMount();
   };
 
-  function OnCountryMount(){
-    if(prevCountry == country){
-      return;
-    }
-    if(prevCountry != country){
-      console.log(year.from);
-      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));     
-      // onLoad(query, display, country, start, end).then((result)=>setMovie(result));   
-      setPrevCountry(country);
-    }
+  function OnCountryMount(country){
+    // if(year == undefined){
+    //   return;
+    // }
+    // if(prevCountry == country){
+    //   console.log('너냐');
+    //   return;
+    // }
+    onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));  
+    // console.log(prevYear, year);
+    // if(prevCountry != country){
+    //   onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));     
+    //   // onLoad(query, display, country, start, end).then((result)=>setMovie(result));   
+    //   // setPrevCountry(country);
+    // }
   };
 
   const onDisplay = (num) => {
     setDisplay(num);
-    OnDisplayMount();
+    setDisplay((num)=>{
+      OnDisplayMount(num);
+    })
   };
 
-  function OnDisplayMount(){
-    if(prevDisplay == display){
-      return;
-    }
+  function OnDisplayMount(display){
+    // if(year == undefined){
+    //   return;
+    // }
+    // if(prevDisplay == display){
+    //   return;
+    // }
     if(prevDisplay != display){
-      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
+      onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));
       // onLoad(query, display, country, start, end).then((result)=>setMovie(result));       
-      setPrevDisplay(display);
+      // setPrevDisplay(display);
     }
   };
 
@@ -178,12 +194,17 @@ const App = memo((props) => {
 
   useEffect(()=>{
     if(query == ''){
+      console.log('아 왜이랴');
       return;
     }
-    // OnInputMount();
-    // OnYearMount();
-    // OnCountryMount();
-    // OnDisplayMount();
+    // if(year == undefined){
+    //   console.log('이유가 뭘까?');
+    //   return;
+    // }
+    OnInputMount();
+    // onYear();
+    // onCountry();
+    // onDisplay();
   });
 
   
