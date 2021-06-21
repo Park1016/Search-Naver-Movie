@@ -39,6 +39,21 @@
   }
 }
 
+.moviePage::-webkit-scrollbar {
+  width: 10px;
+}
+.moviePage::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.moviePage::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: gray;
+}
+.moviePage::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+
 .moviePage {
   display: flex;
   flex-direction: column;
@@ -46,33 +61,62 @@
   justify-content: flex-start;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-.optionsAndMovie {
+.form {
+  position: fixed;
+  display: flex;
+  width: calc(100vw - 10px);
+  height: 5rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  caret-color: transparent;
+}
+
+.movie {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   width: 100vw;
+  caret-color: transparent;
 }
 
 .options {
+  width: 50rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  caret-color: transparent;
 }
 
 .yearPick {
   width: 15rem;
 }
 
+.countryCode {
+  width: 7.5rem;
+}
+
+.display {
+  width: 7.5rem;
+}
+
 .movieList {
-  width: 70rem;
-  /* border: 1px solid black; */
+  width: 90rem;
+  /* height: 42rem; */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background-color: gray;
+  /* background-color: gray; */
+  padding: 2rem;
+  margin-top: 5rem;
+  /* overflow-y: scroll; */
 }

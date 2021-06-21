@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import styels from './display.module.css';
+import styles from './display.module.css';
 import { Select } from 'antd';
 
 const Display = ({onDisplay}) => {
@@ -22,10 +22,11 @@ const Display = ({onDisplay}) => {
 
     return (
         <Select
+            className={styles.display}
             onChange={onChange}
             onClick={(e)=>onClick(e)}
             showSearch
-            placeholder="검색결과 출력 건수"
+            placeholder="영화 개수"
         >
             <Option value="10">10</Option>
             <Option value="20">20</Option>

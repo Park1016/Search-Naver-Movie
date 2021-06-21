@@ -27,9 +27,9 @@ const Input = memo(({input}) => {
     }
 
     return (
-        <form>
-            <input onKeyDown={(e)=>onKeyDown(e)} type='text' placeholder='무엇을 검색하시겠습니까?'></input>
-            <button onClick={(e)=>onClick(e)}>검색</button>
+        <form className={styles.form}>
+            <input className={styles.input} onKeyDown={(e)=>onKeyDown(e)} type='text' placeholder='검색할 영화제목을 입력해주세요'></input>
+            <button className={styles.btn} onClick={(e)=>onClick(e)} type="submit">검색</button>
         </form>
     )
 })

@@ -4,15 +4,20 @@ import styles from './movieList.module.css';
 const MovieList = memo(({movie}) => {
 
     return (
-        <div className={styles.content}>
-            <h2>{movie.title.replace(/<\/b>/gi,'').replace(/<b>/gi,' ')}</h2>
-            <img src={movie.image} />
-            <h3>{movie.subtitle}</h3>
-            <h3>{movie.director}</h3>
-            <h3>{movie.actor}</h3>
-            <h3>{movie.userRating}</h3>
-            <a href={movie.link} target='_blank'>링크</a>
-        </div>
+        <ul className={styles.content}>
+            <li>{movie.title.replace(/<\/b>/gi,'').replace(/<b>/gi,' ')}</li>
+            <li>
+                <img src={movie.image} alt="해당 영화의 포스터가 없습니다"/>
+            </li>
+            <li>{movie.subtitle.replace(/<\/b>/gi,'').replace(/<b>/gi,' ')}</li>
+            <li>{movie.pubDate}</li>
+            <li>{movie.director}</li>
+            <li>{movie.actor}</li>
+            <li>{movie.userRating}</li>
+            <li>
+                <a href={movie.link} target='_blank'>링크</a>
+            </li>
+        </ul>
     )
 })
 

@@ -1,1 +1,20 @@
-﻿
+﻿.form {
+  width: 17rem;
+  border-radius: 10px;
+}
+
+.input {
+  text-align: center;
+  outline: none;
+  border: 1px solid black;
+  width: 14rem;
+  border-radius: 10px 0 0 10px;
+  caret-color: black;
+}
+
+.btn {
+  width: 3rem;
+  border-radius: 0 10px 10px 0;
+  border: 1px solid black;
+  cursor: pointer;
+}

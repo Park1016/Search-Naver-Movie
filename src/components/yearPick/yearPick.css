@@ -1,7 +1,12 @@
 ﻿.ant-picker-panel-container .ant-picker-panels {
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .ant-space {
   width: 15rem;
+}
+
+.ant-space-item {
+  background-color: white;
+  border: 1px solid black;
 }

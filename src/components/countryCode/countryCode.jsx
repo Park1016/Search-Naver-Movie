@@ -25,6 +25,7 @@ const CountryCode = ({onCountry}) => {
 
     return (
         <Select
+            className={styles.countryCode}
             onChange={onChange}
             onClick={(e)=>onClick(e)}
             showSearch
