@@ -1,34 +1,32 @@
-﻿import React, { memo } from 'react';
+﻿import React, { memo, useRef } from 'react';
 import styles from './input.module.css';
 
 const Input = memo(({input}) => {
+    const inputValue = useRef();
+    const onInput = () => {
+        if(!inputValue.current.value){
+            inputValue.current.placeholder = '검색값을 입력하세요!!';
+            return;
+        }
+        console.log(inputValue.current.value);
+        input(inputValue.current.value);
+        inputValue.current.value = '';
+    }
 
     const onKeyDown = (e) => {
-        const target = e.target;
         if(e === 'Enter'){
-            if(!target.value){
-                target.placeholder = '검색값을 입력하세요!!';
-                return;
-            }
-            input(target.value);
-            target.value = '';
+            onInput();
         }
     }
 
     const onClick = (e) => {
         e.preventDefault();
-        const target = e.target.previousElementSibling;
-        if(!target.value){
-            target.placeholder = '검색값을 입력하세요!!';
-            return;
-        }
-        input(target.value);
-        target.value = '';
+        onInput();
     }
 
     return (
         <form className={styles.form}>
-            <input className={styles.input} onKeyDown={(e)=>onKeyDown(e)} type='text' placeholder='검색할 영화제목을 입력해주세요'></input>
+            <input ref={inputValue} className={styles.input} onKeyDown={(e)=>onKeyDown(e)} type='text' placeholder='검색할 영화제목을 입력해주세요'></input>
             <button className={styles.btn} onClick={(e)=>onClick(e)} type="submit">검색</button>
         </form>
     )
