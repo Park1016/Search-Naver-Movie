@@ -8,7 +8,6 @@ const Input = memo(({input}) => {
             inputValue.current.placeholder = '검색값을 입력하세요!!';
             return;
         }
-        console.log(inputValue.current.value);
         input(inputValue.current.value);
         inputValue.current.value = '';
     }

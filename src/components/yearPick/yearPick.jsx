@@ -5,9 +5,9 @@ import { Rate, DatePicker, Space } from 'antd';
 import 'antd/dist/antd.css';
 import { getConfirmLocale } from 'antd/lib/modal/locale';
 
-let year = new Date().getFullYear();
-let firstYear = 0;
-let lastYear = 1;
+// let year = new Date().getFullYear();
+// let firstYear = 0;
+// let lastYear = 1;
 
 const YearPick = memo(({onYear, onReset}) => {
     const { RangePicker } = DatePicker;
@@ -49,8 +49,6 @@ const YearPick = memo(({onYear, onReset}) => {
         if(start != '' && end == ''){
             end = start;
         }
-        // console.log('s',start, 'e',end);
-        // console.log(start, end);
         onYear(start, end);
     };
 

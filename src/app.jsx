@@ -8,10 +8,11 @@ import Input from './components/input/input';
 import YearPick from './components/yearPick/yearPick';
 import CountryCode from './components/countryCode/countryCode';
 import Display from './components/display/display';
+import Guidance from './components/guidance/guidance';
 // import { symbol } from 'prop-types';
 
 
-const App = memo((props) => {
+const App = memo(({naver}) => {
   const [movie, setMovie] = useState([]);
   let [prevQuery, setPrevQuery] = useState('');
   let [prevYear, setPrevYear] = useState({from: '', to: ''});
@@ -24,27 +25,6 @@ const App = memo((props) => {
   let [country, setCountry] = useState('');
 
 
-
-  const myHeaders = new Headers();
-  myHeaders.append('X-Naver-Client-Id', process.env.REACT_APP_CLIENT_ID);
-  myHeaders.append("X-Naver-Client-Secret", process.env.REACT_APP_CLIENT_SECRET);
-
-  const requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-  };
-  
-  async function onLoad(q, display, country, from, to){
-    const search =
-    await fetch(
-      `/v1/search/movie.json?query=${q}&display=${display}&country=${country}&yearfrom=${from}&yearto=${to}`,
-    requestOptions);
-    const response = await search.json();
-    return response;
-  }; 
-
-
   const onInput = (query) => {
     setQuery(query);
     OnInputMount();
@@ -55,11 +35,12 @@ const App = memo((props) => {
       return;
     }
     if(prevQuery != query){
-      onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));       
+      naver.onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));       
       setPrevQuery(query);
     }
   };
   
+
 
   const onYear = (smallYear, largeYear) => {
     setYear({from: smallYear, to: largeYear});
@@ -74,13 +55,13 @@ const App = memo((props) => {
       return;
     }
     if(prevYear != year){      
-      onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
+      naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
       setPrevYear(year);
     }
   };
 
   const onReset = () => {
-    // onLoad(query, display, country, '', '').then((result)=>setMovie(result));
+    // naver.onLoad(query, display, country, '', '').then((result)=>setMovie(result));
     const reset = {from: '', to: ''};
     setYear({from: '', to: ''});
     setYear((reset)=>{
@@ -88,6 +69,8 @@ const App = memo((props) => {
       setYear(reset);
     })
   }
+
+
 
   const onCountry = (code) => {
     setCountry(code);
@@ -98,8 +81,10 @@ const App = memo((props) => {
   };
 
   function OnCountryMount(country){
-    onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));  
+    naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));  
   };
+
+
 
   const onDisplay = (num) => {
     setDisplay(num);
@@ -110,19 +95,12 @@ const App = memo((props) => {
   };
 
   function OnDisplayMount(display){
-    onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
-  };
-
-  const onCheck = () => {
-    if(movie!=undefined){
-      let movieItems = [];
-      movieItems = movie;
-      return movieItems;
-    }
+    naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
   };
 
   
-
+  
+  
   useEffect(()=>{
     if(query == ''){
       return;
@@ -135,7 +113,14 @@ const App = memo((props) => {
     }
     OnInputMount();
   });
-
+  
+  const onCheck = () => {
+    if(movie!=undefined){
+      let movieItems = [];
+      movieItems = movie;
+      return movieItems;
+    }
+  };
   
   let movieItems = onCheck();
   let movieItem = movieItems.items;
@@ -165,6 +150,9 @@ const App = memo((props) => {
                     </div>                    
                   </div> 
                 </div> 
+                <div className={styles.guidance}>
+                  <Guidance query={query}/>
+                </div>
                 <div className={styles.movie}>
                   <div className={styles.movieList}>
                     {movieItem && movieItem.map((item)=>
