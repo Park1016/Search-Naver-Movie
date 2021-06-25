@@ -16,7 +16,7 @@
     async onLoad(query, display, country, from, to){
         const search =
         await fetch(
-          `/v1/search/movie.json?query=${query}&display=${display}&country=${country}&yearfrom=${from}&yearto=${to}`,
+          `https://search-naver-movie.herokuapp.com/https://openapi.naver.com/v1/search/movie.json?query=${query}&display=${display}&country=${country}&yearfrom=${from}&yearto=${to}`,
         this.requestOptions);
         const response = await search.json();
         return response;
