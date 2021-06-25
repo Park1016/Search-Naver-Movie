@@ -1,3 +1,4 @@
 ﻿.guidance {
   transform: translateY(5.5rem);
+  z-index: 10;
 }

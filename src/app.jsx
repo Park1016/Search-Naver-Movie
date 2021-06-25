@@ -151,7 +151,8 @@ const App = memo(({naver}) => {
                   </div> 
                 </div> 
                 <div className={styles.guidance}>
-                  <Guidance query={query}/>
+                  <Guidance query={query} movie={movieItem}/>
+                  {/* {movieItem && <Guidance query={query} movie={movieItem}/>} */}
                 </div>
                 <div className={styles.movie}>
                   <div className={styles.movieList}>
