@@ -102,6 +102,7 @@ const App = memo(({naver}) => {
   
   
   useEffect(()=>{
+    console.log(naver);
     if(query == ''){
       return;
     }
