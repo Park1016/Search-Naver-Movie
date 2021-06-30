@@ -26,7 +26,7 @@ const Guidance = ({query, movie}) => {
     }, [movie]);
 
     return (
-        <h1 ref={text} className={styles.guidance}> </h1>
+        <h1 className={styles.guidance} ref={text} className={styles.guidance}> </h1>
     )
 }
 

@@ -1,7 +1,7 @@
 ﻿import React, { memo, useRef, useState } from 'react';
 import styles from './yearPick.module.css';
 import './yearPick.css';
-import { Rate, DatePicker, Space } from 'antd';
+import {Rate, DatePicker, Space } from 'antd';
 import 'antd/dist/antd.css';
 import { getConfirmLocale } from 'antd/lib/modal/locale';
 

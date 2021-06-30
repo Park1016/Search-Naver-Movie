@@ -12,7 +12,6 @@ const httpClient = axios.create({
 
 const naver = new Naver(httpClient);
 
-
 // const naver = new Naver(process.env.REACT_APP_CLIENT_ID, process.env.REACT_APP_CLIENT_SECRET);
 
 ReactDOM.render(
