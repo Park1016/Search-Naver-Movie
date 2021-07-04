@@ -1,12 +1,13 @@
 ﻿.form {
   position: fixed;
   display: flex;
-  width: calc(100vw - 10px);
+  /* width: calc(100vw - 10px); */
+  width: 100vw;
   height: 5rem;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: yellowgreen;
   caret-color: transparent;
   z-index: 1;
 }

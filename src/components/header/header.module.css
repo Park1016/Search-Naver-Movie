@@ -1,4 +1,4 @@
 ﻿.button {
-  /* z-index: 100; */
+  display: none;
   transform: translateY(5rem);
 }

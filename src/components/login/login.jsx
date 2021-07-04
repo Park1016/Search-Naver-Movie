@@ -1,5 +1,4 @@
-﻿/*global kakao*/
-import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
 import styles from './login.module.css';
 

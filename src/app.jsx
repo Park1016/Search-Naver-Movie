@@ -5,7 +5,7 @@ import Login from './components/login/login';
 import MoviePage from './components/moviePage/moviePage';
 
 
-const App = memo(({naver, authService}) => {
+function App({naver, authService}){
 
   return (
     <div>
@@ -23,6 +23,6 @@ const App = memo(({naver, authService}) => {
       </Router>
     </div>
   )             
-})
+}
 
 export default App;

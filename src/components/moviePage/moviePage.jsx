@@ -1,5 +1,7 @@
-﻿import React, { memo, useEffect, useState } from 'react';
+﻿import React, { memo, useEffect, useRef, useState } from 'react';
 import styles from './moviePage.module.css';
+import { useHistory, useLocation } from 'react-router';
+import Header from '../header/header';
 import MovieList from '../movieList/movieList';
 import Input from '../input/input';
 import YearPick from '../yearPick/yearPick';
@@ -8,121 +10,154 @@ import Display from '../display/display';
 import Guidance from '../guidance/guidance';
 import { v4 as uuid } from 'uuid';
 
-const MoviePage = memo(({naver}) => {
+const MoviePage = memo(({naver,authService}) => {
+    const location = useLocation();
+    const form = useRef();
+    // console.log(location.state.age_range, location.state.email, location.state.gender, location.state.nickname, location.state.image);
     const [movie, setMovie] = useState([]);
-  let [prevQuery, setPrevQuery] = useState('');
-  let [prevYear, setPrevYear] = useState({from: '', to: ''});
-  // let [prevDisplay, setPrevDisplay] = useState('');
-  // let [prevCountry, setPrevCountry] = useState('');
+    let [prevQuery, setPrevQuery] = useState('');
+    let [prevYear, setPrevYear] = useState({from: '', to: ''});
 
-  let [query, setQuery] = useState('');
-  let [year, setYear] = useState({from: '', to: ''});
-  let [display, setDisplay] = useState(10);
-  let [country, setCountry] = useState('');
+    let [query, setQuery] = useState('');
+    let [year, setYear] = useState({from: '', to: ''});
+    let [display, setDisplay] = useState(10);
+    let [country, setCountry] = useState('');
 
 
-  const onInput = (query) => {
-    setQuery(query);
-    OnInputMount();
-  };
-
-  function OnInputMount(){
-    if(prevQuery == query){
-      return;
-    }
-    if(prevQuery != query){
-      naver.onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));       
-      setPrevQuery(query);
-    }
-  };
+    const history = useHistory();
+    const onLogout = () => {
+      authService.logout();
+    };
   
+    useEffect(() => {
+      authService.onAuthChange(user => {
+        if (!user) {
+          history.push('/');
+        }
+      });
+    });
 
 
-  const onYear = (smallYear, largeYear) => {
-    setYear({from: smallYear, to: largeYear});
-    setYear((year)=>{
-      OnYearMount(year);
-      setYear(year);
-    })
-  };
+    const onInput = (query) => {
+        setQuery(query);
+        OnInputMount();
+    };
 
-  function OnYearMount(year){
-    if(prevYear == year){
-      return;
+    function OnInputMount(){
+        if(prevQuery == query){
+        return;
+        }
+        if(prevQuery != query){
+        naver.onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));       
+        setPrevQuery(query);
+        }
+    };
+    
+
+
+    const onYear = (smallYear, largeYear) => {
+        setYear({from: smallYear, to: largeYear});
+        setYear((year)=>{
+        OnYearMount(year);
+        setYear(year);
+        })
+    };
+
+    function OnYearMount(year){
+        if(prevYear == year){
+        return;
+        }
+        if(prevYear != year){      
+        naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
+        setPrevYear(year);
+        }
+    };
+
+    const onReset = () => {
+        setYear({from: '', to: ''});
+        setYear((reset)=>{
+        OnYearMount(reset);
+        setYear(reset);
+        })
     }
-    if(prevYear != year){      
-      naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
-      setPrevYear(year);
+
+    const onCountry = (code) => {
+        setCountry(code);
+        setCountry((code)=>{
+        OnCountryMount(code);
+        setCountry(code);
+        })
+    };
+
+    function OnCountryMount(country){
+        naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));  
+    };
+
+
+
+    const onDisplay = (num) => {
+        setDisplay(num);
+        setDisplay((num)=>{
+        OnDisplayMount(num);
+        setDisplay(num);
+        })
+    };
+
+    function OnDisplayMount(display){
+        naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
+    };
+
+    
+    
+    
+    useEffect(()=>{
+        if(query == ''){
+        return;
+        }
+        if(country == undefined){
+        country = '';
+        }
+        if(display == undefined){
+        display = 10;
+        }
+        OnInputMount();
+    });
+    
+    const onCheck = () => {
+        if(movie!=undefined){
+        let movieItems = [];
+        movieItems = movie;
+        return movieItems;
+        }
+    };
+
+    let movieItems = onCheck();
+    let movieItem = movieItems.items;
+
+    if(movieItem != undefined){
+        if(movieItem.length == 0){
+            onChangeWidth();
+        }else{
+            onScrollChangeWidth();
+        }
     }
-  };
 
-  const onReset = () => {
-    setYear({from: '', to: ''});
-    setYear((reset)=>{
-      OnYearMount(reset);
-      setYear(reset);
-    })
-  }
-
-  const onCountry = (code) => {
-    setCountry(code);
-    setCountry((code)=>{
-      OnCountryMount(code);
-      setCountry(code);
-    })
-  };
-
-  function OnCountryMount(country){
-    naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));  
-  };
-
-
-
-  const onDisplay = (num) => {
-    setDisplay(num);
-    setDisplay((num)=>{
-      OnDisplayMount(num);
-      setDisplay(num);
-    })
-  };
-
-  function OnDisplayMount(display){
-    naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
-  };
-
-  
-  
-  
-  useEffect(()=>{
-    if(query == ''){
-      return;
+    function onScrollChangeWidth(){
+        form.current.style.width = 'calc(100vw - 10px)';
     }
-    if(country == undefined){
-      country = '';
+
+    function onChangeWidth(){
+        form.current.style.width = '100vw';
     }
-    if(display == undefined){
-      display = 10;
-    }
-    OnInputMount();
-  });
-  
-  const onCheck = () => {
-    if(movie!=undefined){
-      let movieItems = [];
-      movieItems = movie;
-      return movieItems;
-    }
-  };
-  
-  let movieItems = onCheck();
-  let movieItem = movieItems.items;
+
     return (
         <>
-            <div className={styles.form}>
+            <Header onLogout={onLogout}/>
+            <div ref={form} className={styles.form}>
             <div className={styles.options}>
                 <Input input={onInput}/>
                 <div className={styles.yearPick}> 
-                <YearPick onYear={onYear} onReset={onReset}/>
+                <YearPick onYear={onYear} onReset={onReset} query={query} movie={movieItem}/>
                 </div>
                 <div className={styles.countryCode}>
                 <CountryCode onCountry={onCountry}/>
