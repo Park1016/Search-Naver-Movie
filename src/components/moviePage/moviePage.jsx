@@ -40,10 +40,10 @@ const MoviePage = memo(({naver,authService}) => {
 
     const onInput = (query) => {
         setQuery(query);
-        OnInputMount();
+        onInputMount();
     };
 
-    function OnInputMount(){
+    function onInputMount(){
         if(prevQuery == query){
         return;
         }
@@ -58,38 +58,37 @@ const MoviePage = memo(({naver,authService}) => {
     const onYear = (smallYear, largeYear) => {
         setYear({from: smallYear, to: largeYear});
         setYear((year)=>{
-        OnYearMount(year);
-        setYear(year);
+            onYearMount(year);
+            setYear(year);
         })
     };
 
-    function OnYearMount(year){
+    function onYearMount(year){
         if(prevYear == year){
         return;
         }
-        if(prevYear != year){      
-        naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
-        setPrevYear(year);
+        if(prevYear != year){    
+            naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
+            setPrevYear(year);
         }
     };
 
     const onReset = () => {
         setYear({from: '', to: ''});
         setYear((reset)=>{
-        OnYearMount(reset);
-        setYear(reset);
+            onYear(reset.form, reset.to);
         })
     }
 
     const onCountry = (code) => {
         setCountry(code);
         setCountry((code)=>{
-        OnCountryMount(code);
-        setCountry(code);
+            onCountryMount(code);
+            setCountry(code);
         })
     };
 
-    function OnCountryMount(country){
+    function onCountryMount(country){
         naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));  
     };
 
@@ -98,12 +97,12 @@ const MoviePage = memo(({naver,authService}) => {
     const onDisplay = (num) => {
         setDisplay(num);
         setDisplay((num)=>{
-        OnDisplayMount(num);
-        setDisplay(num);
+            onDisplayMount(num);
+            setDisplay(num);
         })
     };
 
-    function OnDisplayMount(display){
+    function onDisplayMount(display){
         naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
     };
 
@@ -120,7 +119,7 @@ const MoviePage = memo(({naver,authService}) => {
         if(display == undefined){
         display = 10;
         }
-        OnInputMount();
+        onInputMount();
     });
     
     const onCheck = () => {
