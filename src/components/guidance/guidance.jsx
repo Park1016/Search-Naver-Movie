@@ -6,6 +6,7 @@ const Guidance = ({query, movie}) => {
     const onCheck = () => {
         if(query){
             if(movie != undefined){
+                // console.log(movie.length);
                 if(movie.length != 0){
                     text.current.textContent = `"${query}" 의 검색결과입니다`;
                     return;

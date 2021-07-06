@@ -1,4 +1,4 @@
-﻿import React, { memo, useRef, useState } from 'react';
+﻿import React, { memo, useEffect, useRef, useState } from 'react';
 import styles from './yearPick.module.css';
 import './yearPick.css';
 import {Rate, DatePicker, Space } from 'antd';
@@ -26,10 +26,13 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
     const onInputChange = (startYear) => {     
         let start = pick.current.firstElementChild.children.item(0).firstElementChild.value;
         let end = pick.current.firstElementChild.children.item(2).firstElementChild.value;
+        if(movie.length == 0){
+            console.log('RBadf');
+            onResetYear();
+        }
         if(prevStart === start){
             onResetYear();
         }
-        console.log(start);
         // if(start > year){
             // const calendarBody = test.current.parentElement.parentElement.parentElement.
             // parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.
@@ -86,6 +89,17 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
         alert.current.style.display = 'block';
         onResetYear();
     }
+
+    useEffect(()=>{
+        if(query){
+            if(movie != undefined){
+                if(movie.length == 0){
+                    onResetYear();
+                    return;
+                }
+            }
+        }
+    },[movie]);
 
     const onInputClick = (e) => {
         let start = pick.current.firstElementChild.children.item(0).firstElementChild.value;

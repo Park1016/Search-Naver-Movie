@@ -156,18 +156,18 @@ const MoviePage = memo(({naver,authService}) => {
             <div className={styles.options}>
                 <Input input={onInput}/>
                 <div className={styles.yearPick}> 
-                <YearPick onYear={onYear} onReset={onReset} query={query} movie={movieItem}/>
+                    <YearPick onYear={onYear} onReset={onReset} query={query} movie={movieItem}/>
                 </div>
                 <div className={styles.countryCode}>
-                <CountryCode onCountry={onCountry}/>
+                    <CountryCode onCountry={onCountry}/>
                 </div> 
                 <div className={styles.display}>
-                <Display onDisplay={onDisplay}/>
+                    <Display onDisplay={onDisplay}/>
                 </div>                    
             </div> 
             </div> 
             <div className={styles.guidance}>
-            <Guidance query={query} movie={movieItem}/>
+                <Guidance query={query} movie={movieItem}/>
             </div>
             <div className={styles.movie}>
             <div className={styles.movieList}>
