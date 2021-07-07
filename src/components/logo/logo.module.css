@@ -1,0 +1,15 @@
+﻿.logoDiv {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-20rem);
+}
+
+.logo {
+  color: #546de5;
+  font-weight: bold;
+  line-height: 1;
+  transform: translateY(0.2rem);
+}

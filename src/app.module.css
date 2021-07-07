@@ -43,11 +43,11 @@
   width: 10px;
 }
 .moviePage::-webkit-scrollbar-track {
-  background-color: transparent;
+  background-color: #cbcdcd;
 }
 .moviePage::-webkit-scrollbar-thumb {
   border-radius: 3px;
-  background-color: gray;
+  background-color: #888888;
 }
 .moviePage::-webkit-scrollbar-button {
   width: 0;
@@ -65,5 +65,5 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: black;
+  background-color: #333333;
 }

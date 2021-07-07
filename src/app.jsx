@@ -1,9 +1,8 @@
-import React, { memo, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styles from './app.module.css';
 import Login from './components/login/login';
 import MoviePage from './components/moviePage/moviePage';
-
 
 function App({naver, authService}){
 

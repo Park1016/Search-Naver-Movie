@@ -9,6 +9,7 @@ import CountryCode from '../countryCode/countryCode';
 import Display from '../display/display';
 import Guidance from '../guidance/guidance';
 import { v4 as uuid } from 'uuid';
+import Logo from '../logo/logo';
 
 const MoviePage = memo(({naver,authService}) => {
     const location = useLocation();
@@ -20,7 +21,7 @@ const MoviePage = memo(({naver,authService}) => {
 
     let [query, setQuery] = useState('');
     let [year, setYear] = useState({from: '', to: ''});
-    let [display, setDisplay] = useState(10);
+    let [display, setDisplay] = useState(50);
     let [country, setCountry] = useState('');
 
 
@@ -71,6 +72,7 @@ const MoviePage = memo(({naver,authService}) => {
             naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
             setPrevYear(year);
         }
+        console.log(year);
     };
 
     const onReset = () => {
@@ -154,6 +156,7 @@ const MoviePage = memo(({naver,authService}) => {
             <Header onLogout={onLogout}/>
             <div ref={form} className={styles.form}>
             <div className={styles.options}>
+                <Logo />              
                 <Input input={onInput}/>
                 <div className={styles.yearPick}> 
                     <YearPick onYear={onYear} onReset={onReset} query={query} movie={movieItem}/>
@@ -170,11 +173,11 @@ const MoviePage = memo(({naver,authService}) => {
                 <Guidance query={query} movie={movieItem}/>
             </div>
             <div className={styles.movie}>
-            <div className={styles.movieList}>
-                {movieItem && movieItem.map((item)=>
-                <MovieList key={uuid()} movie={item}/>
-                )}
-            </div>
+                <div className={styles.movieList}>
+                    {movieItem && movieItem.map((item)=>
+                    <MovieList key={uuid()} movie={item}/>
+                    )}
+                </div>
             </div>
         </>
     )

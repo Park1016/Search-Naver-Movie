@@ -24,11 +24,13 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
     let [prev, setPrev] = useState('');
 
     const onInputChange = (startYear) => {     
+        // console.log('?');
         let start = pick.current.firstElementChild.children.item(0).firstElementChild.value;
         let end = pick.current.firstElementChild.children.item(2).firstElementChild.value;
         if(movie.length == 0){
-            console.log('RBadf');
-            onResetYear();
+            console.log('뙤');
+            // onInputClick();
+            // return;
         }
         if(prevStart === start){
             onResetYear();
@@ -48,6 +50,8 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
             // }
             // return;
         // }
+
+
         if(start == '' && end != ''){
             start = end;
         }
@@ -90,23 +94,23 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
         onResetYear();
     }
 
-    useEffect(()=>{
-        if(query){
-            if(movie != undefined){
-                if(movie.length == 0){
-                    onResetYear();
-                    return;
-                }
-            }
-        }
-    },[movie]);
+    // useEffect(()=>{
+    //     if(query){
+    //         if(movie != undefined){
+    //             if(movie.length == 0){
+    //                 onResetYear();
+    //                 return;
+    //             }
+    //         }
+    //     }
+    // },[movie]);
 
     const onInputClick = (e) => {
         let start = pick.current.firstElementChild.children.item(0).firstElementChild.value;
         let end = pick.current.firstElementChild.children.item(2).firstElementChild.value;
-        const calendarBody = test.current.parentElement.parentElement.parentElement.
-        parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.
-        nextElementSibling.nextElementSibling.firstElementChild.firstElementChild;
+        // const calendarBody = test.current.parentElement.parentElement.parentElement.
+        // parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.
+        // nextElementSibling.nextElementSibling.firstElementChild.firstElementChild;
     //     onInputChange();
     //     console.log('1');
     //     if(!calendar){
@@ -123,8 +127,8 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
     //             onInputChange(start);
     //         })
     //     }
-        let a = start;
-        let b = end;
+        // let a = start;
+        // let b = end;
         // console.log('a: '+a, 'b: '+b);
         // console.log('s:'+start, 'e:'+end);
         // if(e.target.className == 'ant-picker-cell-inner'){           
@@ -134,6 +138,33 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
         //         onShowAlert();
         //     }
         // }
+        const calendarBody = test.current.parentElement.parentElement.parentElement.
+            parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.
+            nextElementSibling.nextElementSibling.firstElementChild.firstElementChild;
+        console.log(calendarBody);
+        console.log(calendarBody.className);
+        console.log(calendarBody.classList.contains('ant-slide-up-leave'));
+        console.log(calendarBody.classList.contains('ant-picker-dropdown-hidden'));
+        if(start == '' && end != ''){
+            start = end;
+        }
+        if(start != '' && end == ''){
+            end = start;
+        }  
+        console.log(e);
+        if(e != undefined){
+            console.log(e.target.className);
+            // ant-picker-cell-inner
+            if(e.target == end){
+                setSaveStart(start);
+                onYear(start, end);
+                setPrevStart(start);
+                // setPrevEnd(end);
+                setPrev(start);
+                console.log('끝');
+                return;
+            }
+        }
     }
 
 

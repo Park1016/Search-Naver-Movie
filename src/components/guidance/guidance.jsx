@@ -3,10 +3,10 @@ import styles from './guidance.module.css';
 
 const Guidance = ({query, movie}) => {
     let text = useRef();
+    
     const onCheck = () => {
         if(query){
             if(movie != undefined){
-                // console.log(movie.length);
                 if(movie.length != 0){
                     text.current.textContent = `"${query}" 의 검색결과입니다`;
                     return;
@@ -27,7 +27,7 @@ const Guidance = ({query, movie}) => {
     }, [movie]);
 
     return (
-        <h1 className={styles.guidance} ref={text} className={styles.guidance}> </h1>
+        <h1 className={styles.guidance} ref={text}> </h1>
     )
 }
 

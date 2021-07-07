@@ -1,4 +1,19 @@
 ﻿.guidance {
-  transform: translateY(6.5rem);
+  transform: translateY(6.3rem);
   caret-color: transparent;
+  color: white;
+  text-shadow: rgb(0, 0, 0) 0.3rem 0.3rem 0.3rem;
+  animation: guidance 1s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+}
+
+@keyframes guidance {
+  from {
+    transform: translate(0, 3.5rem);
+  }
+
+  to {
+    transform: translate(0, 6.3rem);
+  }
 }
