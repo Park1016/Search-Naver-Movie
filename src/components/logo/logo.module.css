@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   transform: translateX(-20rem);
+  cursor: pointer;
 }
 
 .logo {

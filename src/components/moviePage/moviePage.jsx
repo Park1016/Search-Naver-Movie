@@ -14,6 +14,7 @@ import Logo from '../logo/logo';
 const MoviePage = memo(({naver,authService}) => {
     const location = useLocation();
     const form = useRef();
+    const movieList = useRef();
     // console.log(location.state.age_range, location.state.email, location.state.gender, location.state.nickname, location.state.image);
     const [movie, setMovie] = useState([]);
     let [prevQuery, setPrevQuery] = useState('');
@@ -138,8 +139,10 @@ const MoviePage = memo(({naver,authService}) => {
     if(movieItem != undefined){
         if(movieItem.length == 0){
             onChangeWidth();
+            movieList.current.style.display = 'none';
         }else{
             onScrollChangeWidth();
+            movieList.current.style.display = 'flex';
         }
     }
 
@@ -173,7 +176,7 @@ const MoviePage = memo(({naver,authService}) => {
                 <Guidance query={query} movie={movieItem}/>
             </div>
             <div className={styles.movie}>
-                <div className={styles.movieList}>
+                <div ref={movieList} className={movieItem ? styles.movieList : styles.none}>
                     {movieItem && movieItem.map((item)=>
                     <MovieList key={uuid()} movie={item}/>
                     )}

@@ -28,7 +28,6 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
         let start = pick.current.firstElementChild.children.item(0).firstElementChild.value;
         let end = pick.current.firstElementChild.children.item(2).firstElementChild.value;
         if(movie.length == 0){
-            console.log('뙤');
             // onInputClick();
             // return;
         }
@@ -138,33 +137,36 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
         //         onShowAlert();
         //     }
         // }
-        const calendarBody = test.current.parentElement.parentElement.parentElement.
-            parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.
-            nextElementSibling.nextElementSibling.firstElementChild.firstElementChild;
-        console.log(calendarBody);
-        console.log(calendarBody.className);
-        console.log(calendarBody.classList.contains('ant-slide-up-leave'));
-        console.log(calendarBody.classList.contains('ant-picker-dropdown-hidden'));
-        if(start == '' && end != ''){
-            start = end;
-        }
-        if(start != '' && end == ''){
-            end = start;
-        }  
-        console.log(e);
-        if(e != undefined){
-            console.log(e.target.className);
-            // ant-picker-cell-inner
-            if(e.target == end){
-                setSaveStart(start);
-                onYear(start, end);
-                setPrevStart(start);
-                // setPrevEnd(end);
-                setPrev(start);
-                console.log('끝');
-                return;
-            }
-        }
+
+
+
+        // const calendarBody = test.current.parentElement.parentElement.parentElement.
+        //     parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.
+        //     nextElementSibling.nextElementSibling.firstElementChild.firstElementChild;
+        // console.log(calendarBody);
+        // console.log(calendarBody.className);
+        // console.log(calendarBody.classList.contains('ant-slide-up-leave'));
+        // console.log(calendarBody.classList.contains('ant-picker-dropdown-hidden'));
+        // if(start == '' && end != ''){
+        //     start = end;
+        // }
+        // if(start != '' && end == ''){
+        //     end = start;
+        // }  
+        // console.log(e);
+        // if(e != undefined){
+        //     console.log(e.target.className);
+        //     // ant-picker-cell-inner
+        //     if(e.target == end){
+        //         setSaveStart(start);
+        //         onYear(start, end);
+        //         setPrevStart(start);
+        //         // setPrevEnd(end);
+        //         setPrev(start);
+        //         console.log('끝');
+        //         return;
+        //     }
+        // }
     }
 
 
