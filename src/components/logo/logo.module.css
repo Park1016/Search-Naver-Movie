@@ -6,6 +6,11 @@
   justify-content: center;
   transform: translateX(-20rem);
   cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.logoDiv:hover {
+  transform: translateX(-19.9rem);
 }
 
 .logo {
