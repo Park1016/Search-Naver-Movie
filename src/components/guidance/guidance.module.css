@@ -1,21 +1,37 @@
-﻿.guidance {
-  transform: translateY(6.3rem);
-  caret-color: transparent;
-  /* color: #546de5; */
-  color: black;
+﻿.h1 {
+  transform: translateY(0.3rem);
+  padding-left: 1rem;
+  color: #7a7a7a;
   font-weight: bold;
-  /* text-shadow: gray 0.1rem 0.1rem 0.3rem; */
-  animation: guidance 1s;
-  animation-iteration-count: 1;
-  animation-direction: normal;
+  font-size: 1.2rem;
 }
 
-@keyframes guidance {
-  from {
-    transform: translate(0, 3.5rem);
-  }
+/* .images {
+  position: absolute;
+} */
 
-  to {
-    transform: translate(0, 6.3rem);
-  }
+.popcorn,
+.cam,
+.readyAction,
+.film {
+  position: absolute;
+  transform: translateX(-6rem) scale(0);
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  border: 1px solid #e3e3e3;
+  box-shadow: 5px 5px 10px #e3e3e3;
+  transition: all 300ms ease-in-out;
+}
+
+.popcorn {
+  transform: translateX(-6rem) scale(1);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(15rem);
 }

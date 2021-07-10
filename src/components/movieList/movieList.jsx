@@ -53,7 +53,7 @@ const MovieList = memo(({movie}) => {
                         <ul className={styles.modalContents}>
                             <li>
                                 <img className={styles.mPoster} alt="해당 영화의 포스터가 없습니다"
-                                onError={(e)=>{e.target.onerror = null; e.target.src="/image/noMoviePoster.png"}}
+                                onError={(e)=>{e.target.onerror = null; e.target.src="/images/noMoviePoster.png"}}
                                 />
                             </li>
                             <li>
@@ -79,11 +79,11 @@ const MovieList = memo(({movie}) => {
             </section>
 
             <ul ref={content} className={styles.content}>     
-                <li>
+                <li className={styles.posterArea}>
                     <div className={styles.posterBack} style={{backgroundImage:`url("${movie.image}")`}}>
                         <div className={styles.posterBlur}>
                             <img className={styles.poster} src={movie.image} alt="해당 영화의 포스터가 없습니다"
-                            onError={(e)=>{e.target.onerror = null; e.target.src="/image/noMoviePoster.png"}}
+                            onError={(e)=>{e.target.onerror = null; e.target.src="/images/noMoviePoster.png"}}
                             onClick={e=>onClick(e)} title={'상세보기'}/>
                         </div>
                     </div>

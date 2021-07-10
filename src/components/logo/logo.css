@@ -1,5 +1,9 @@
 ﻿.fa-video {
-  color: #546de5;
+  /* color: #99a6de; */
+  /* color: darkgray; */
+  color: white;
+  /* color: #7bd7d5; */
   margin-right: 1rem;
   font-size: 2rem;
+  /* text-shadow: white 0.1rem 0.1rem 0.3rem; */
 }

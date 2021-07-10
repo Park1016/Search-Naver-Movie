@@ -1,7 +1,7 @@
 ﻿.content {
   width: 12rem;
   height: 20rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 0.5rem; */
   list-style: none;
   padding: 0;
   display: flex;
@@ -14,11 +14,16 @@
   transform: scale(1.01);
 }
 
+.posterArea {
+  margin-bottom: 0.5rem;
+}
+
 .poster {
   width: 10rem;
   height: 15rem;
   object-fit: contain;
   cursor: pointer;
+  box-shadow: 5px 5px 5px #e9f1f4;
 }
 
 .posterBlur {
@@ -47,9 +52,15 @@
 }
 
 .date {
-  color: black;
+  color: #859dc6;
+  font-weight: bold;
   text-align: left;
   width: 10rem;
+  /* width: 3rem;
+  color: white;
+  background-color: #859dc6;
+  text-align: center;
+  border-radius: 10px; */
 }
 
 .none {
@@ -96,6 +107,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  background-color: rgb(255, 255, 255, 0.3);
+  border-radius: 10px;
 }
 
 .mPoster {
@@ -108,7 +121,7 @@
 .mTexts {
   list-style: none;
   color: white;
-  padding: 0;
+  padding: 0 1.5rem 0 0;
 }
 
 .mTitle {

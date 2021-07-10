@@ -1,21 +1,40 @@
-﻿.logoDiv {
+﻿.back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-28rem) rotate(-40deg);
+  /* background-color: rgb(255, 255, 255, 0.5); */
+  background-color: rgb(0, 0, 0, 0.1);
   position: absolute;
+  width: 20rem;
+  height: 50rem;
+  /* border-radius: 50%; */
+}
+
+.logoDiv {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  transform: translateX(-20rem);
   cursor: pointer;
   transition: all 200ms ease-in-out;
+  transform: translateX(-20rem);
+  position: absolute;
 }
 
 .logoDiv:hover {
-  transform: translateX(-19.9rem);
+  /* transform: scale(1.01); */
+  transform: translateX(-20.1rem);
 }
 
 .logo {
-  color: #546de5;
+  /* color: #99a6de; */
+  /* color: darkgray; */
+  color: white;
+  /* color: #7bd7d5; */
   font-weight: bold;
   line-height: 1;
   transform: translateY(0.2rem);
+  width: 10rem;
+  /* text-shadow: white 0.1rem 0.1rem 0.3rem; */
 }
