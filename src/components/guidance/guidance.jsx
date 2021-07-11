@@ -6,20 +6,21 @@ const Guidance = ({query, movie}) => {
     const text = useRef();
     const guidanceText = useRef();
     const image = useRef();
+    let showSlide;
+    let i = 1;
     
     const onCheck = () => {
         if(query){
             if(movie != undefined){
                 if(movie.length != 0){
                     text.current.textContent = `"${query}" 의 검색결과입니다`;
-                    console.log(image.current);
                     image.current.style.display = 'none';
                     guidanceText.current.setAttribute('class', 'fillContent');
                     return;
                 }
                 if(movie.length == 0){
                     text.current.textContent = `"${query}" 의 검색결과가 없습니다`;
-                    // image.current.style.display = 'block';
+                    image.current.style.display = 'block';
                     onSlide();
                     guidanceText.current.setAttribute('class', 'emptyContent');
                     return;
@@ -27,27 +28,29 @@ const Guidance = ({query, movie}) => {
             }
         }else{
             text.current.textContent = '영화 제목을 검색해보세요!';
-            // image.current.style.display = 'block';
             onSlide();
             guidanceText.current.setAttribute('class', 'emptyContent');
             return;
         }
     };
     
-    const onSlide = () => {
-        let i = 1; 
-        setInterval(() => {
-            if(i > image.current.childNodes.length-1){
-                i = 0;
-            }
-            image.current.childNodes[0].style.transform = 'translateX(-6rem) scale(0)';
-            image.current.childNodes[1].style.transform = 'translateX(-6rem) scale(0)';
-            image.current.childNodes[2].style.transform = 'translateX(-6rem) scale(0)';
-            image.current.childNodes[3].style.transform = 'translateX(-6rem) scale(0)';
-            image.current.childNodes[i].style.transform = 'translateX(-6rem) scale(1)';
+    const onSlide = () => { 
+        showSlide = setInterval(() => {    
+        if(image.current.style.display == 'none'){
+            clearInterval(showSlide);
+        }          
+        if(i > image.current.childNodes.length-1){
+            i = 0;
+        }
+        
+        image.current.childNodes[0].style.transform = 'translateX(-6rem) scale(0)';
+        image.current.childNodes[1].style.transform = 'translateX(-6rem) scale(0)';
+        image.current.childNodes[2].style.transform = 'translateX(-6rem) scale(0)';
+        image.current.childNodes[3].style.transform = 'translateX(-6rem) scale(0)';
+        image.current.childNodes[i].style.transform = 'translateX(-6rem) scale(1)';
 
-            i++;
-        }, 3000)
+        i++;          
+        }, 3000);
     }
 
 

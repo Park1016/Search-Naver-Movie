@@ -31,20 +31,6 @@
   border: none;
   background-color: #f8f8f8;
   transform: translateY(13rem);
-
-  animation: guidance 2s;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-}
-
-@keyframes guidance {
-  from {
-    transform: translate(-50rem, 13rem);
-  }
-
-  to {
-    transform: translate(0, 13rem);
-  }
 }
 
 .fillContent {

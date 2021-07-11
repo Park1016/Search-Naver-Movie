@@ -1,7 +1,5 @@
 ﻿import React, { memo, useEffect, useRef, useState } from 'react';
 import styles from './moviePage.module.css';
-import { useHistory, useLocation } from 'react-router';
-import Header from '../header/header';
 import MovieList from '../movieList/movieList';
 import Input from '../input/input';
 import YearPick from '../yearPick/yearPick';
@@ -11,11 +9,11 @@ import Guidance from '../guidance/guidance';
 import { v4 as uuid } from 'uuid';
 import Logo from '../logo/logo';
 
-const MoviePage = memo(({naver,authService}) => {
-    const location = useLocation();
+const MoviePage = memo(({naver}) => {
+
     const form = useRef();
     const movieList = useRef();
-    // console.log(location.state.age_range, location.state.email, location.state.gender, location.state.nickname, location.state.image);
+
     const [movie, setMovie] = useState([]);
     let [prevQuery, setPrevQuery] = useState('');
     let [prevYear, setPrevYear] = useState({from: '', to: ''});
@@ -25,19 +23,6 @@ const MoviePage = memo(({naver,authService}) => {
     let [display, setDisplay] = useState(50);
     let [country, setCountry] = useState('');
 
-
-    const history = useHistory();
-    const onLogout = () => {
-      authService.logout();
-    };
-  
-    useEffect(() => {
-      authService.onAuthChange(user => {
-        if (!user) {
-          history.push('/');
-        }
-      });
-    });
 
 
     const onInput = (query) => {
@@ -156,7 +141,6 @@ const MoviePage = memo(({naver,authService}) => {
 
     return (
         <>
-            <Header onLogout={onLogout}/>
             <div ref={form} className={styles.form}>
             <div className={styles.options}>
                 <Logo />              
