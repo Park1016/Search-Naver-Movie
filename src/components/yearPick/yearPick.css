@@ -14,3 +14,12 @@
 .ant-picker-range .ant-picker-active-bar {
   background: black;
 }
+
+@media screen and (max-width: 1191px) {
+  .ant-picker-panel-container .ant-picker-panels {
+    flex-direction: column;
+  }
+  .ant-picker-panel-container {
+    height: 38rem;
+  }
+}

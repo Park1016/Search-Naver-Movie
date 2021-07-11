@@ -6,12 +6,8 @@
   height: 5rem;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  /* background-color: #252525; */
-  /* background-color: #a12223; */
-  /* background-color: #63cdda; */
-  /* background-color: white; */
-  background: rgb(117, 226, 211);
+  justify-content: space-between;
+
   background: linear-gradient(
     90deg,
     rgba(153, 166, 222, 1) 0%,
@@ -31,8 +27,8 @@
   caret-color: transparent;
 }
 
-.options {
-  width: 50rem;
+.options,
+.toggle {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -40,14 +36,25 @@
   caret-color: transparent;
 }
 
+.options {
+  width: 51rem;
+  margin-right: 22.5rem;
+}
+
+.toggle {
+  width: 32rem;
+  margin-right: 1rem;
+}
+
+.input {
+  transform: translateY(0.05rem);
+}
+
 .yearPick {
   width: 15rem;
 }
 
-.countryCode {
-  width: 7.5rem;
-}
-
+.countryCode,
 .display {
   width: 7.5rem;
 }
@@ -68,4 +75,72 @@
 
 .none {
   display: none;
+}
+
+.arrow {
+  display: none;
+}
+
+@media screen and (max-width: 1500px) {
+  .form {
+    justify-content: flex-start;
+  }
+  .options {
+    margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 1191px) {
+  .options {
+    justify-content: space-between;
+  }
+
+  .toggle {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 18rem;
+    height: 10rem;
+    padding: 1rem;
+    /* background-color: rgb(119, 224, 212, 0.5); */
+    background-color: #b8ece6;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #adadad;
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+  }
+
+  .arrow {
+    display: block;
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-color: #b8ece6;
+    /* background-color: black; */
+    /* top: 0.01rem; */
+    /* right: 8rem; */
+    z-index: 1;
+    transform: rotate(45deg) translate(-0.1rem, 0.8rem);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .logo {
+    display: none;
+  }
+  .input {
+    margin-right: 5rem;
+  }
+  .options {
+    justify-content: center;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .arrow {
+    display: none;
+  }
 }

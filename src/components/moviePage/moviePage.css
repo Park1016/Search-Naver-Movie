@@ -1,0 +1,24 @@
+﻿.fa-bars {
+  display: none;
+  color: white;
+  /* background-color: #859dc6;
+  border-radius: 50%; */
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.fa-bars:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1191px) {
+  .fa-bars {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .fa-bars {
+    margin: 0;
+  }
+}

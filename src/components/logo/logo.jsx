@@ -11,10 +11,11 @@ const Logo = (props) => {
 
     return (
         <>
-            <div className={styles.back}></div>
-            <div ref={logo} className={styles.logoDiv} onClick={onClick}>
-                <i className="fas fa-video"></i>
-                <h1 className={styles.logo}>Search<br/>Naver Movie</h1>
+            <div className={styles.back}>
+                <div ref={logo} className={styles.logoDiv} onClick={onClick}>
+                    <i className="fas fa-video"></i>
+                    <h1 className={styles.logo}>Search<br/>Naver Movie</h1>
+                </div>
             </div>
         </>
     )

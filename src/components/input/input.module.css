@@ -26,3 +26,23 @@
   outline: none;
   border: none;
 }
+
+@media screen and (max-width: 1191px) {
+  .form {
+    width: 30rem;
+  }
+
+  .input {
+    width: 27rem;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .form {
+    width: 20rem;
+  }
+
+  .input {
+    width: 17rem;
+  }
+}

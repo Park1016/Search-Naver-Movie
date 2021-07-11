@@ -1,5 +1,6 @@
 ﻿import React, { memo, useEffect, useRef, useState } from 'react';
 import styles from './moviePage.module.css';
+import './moviePage.css';
 import MovieList from '../movieList/movieList';
 import Input from '../input/input';
 import YearPick from '../yearPick/yearPick';
@@ -8,11 +9,14 @@ import Display from '../display/display';
 import Guidance from '../guidance/guidance';
 import { v4 as uuid } from 'uuid';
 import Logo from '../logo/logo';
+import { symbol } from 'prop-types';
 
 const MoviePage = memo(({naver}) => {
 
     const form = useRef();
     const movieList = useRef();
+    const toggle = useRef();
+    const arrow = useRef();
 
     const [movie, setMovie] = useState([]);
     let [prevQuery, setPrevQuery] = useState('');
@@ -139,23 +143,44 @@ const MoviePage = memo(({naver}) => {
         form.current.style.width = '100vw';
     }
 
+    const onToggle = () => {
+        if(toggle.current.style.display == 'flex'){
+            toggle.current.style.display = 'none';
+            arrow.current.style.display = 'none';
+        }else{
+            toggle.current.style.display = 'flex';
+            arrow.current.style.display = 'block';
+        }
+    }
+
+
+
     return (
         <>
-            <div ref={form} className={styles.form}>
-            <div className={styles.options}>
-                <Logo />              
-                <Input input={onInput}/>
-                <div className={styles.yearPick}> 
-                    <YearPick onYear={onYear} onReset={onReset} query={query} movie={movieItem}/>
+            <section ref={form} className={styles.form}>
+                <div className={styles.logo}>
+                    <Logo />                 
                 </div>
-                <div className={styles.countryCode}>
-                    <CountryCode onCountry={onCountry}/>
+                <div className={styles.options}>
+                    <div className={styles.input}>
+                        <Input input={onInput}/>
+                    </div>
+                    <i onClick={onToggle} className="fas fa-bars">
+                        <div ref={arrow} className={styles.arrow}></div>
+                    </i>
+                    <div ref={toggle} className={styles.toggle}>
+                        <div className={styles.yearPick}> 
+                            <YearPick onYear={onYear} onReset={onReset} query={query} movie={movieItem}/>
+                        </div>
+                        <div className={styles.countryCode}>
+                            <CountryCode onCountry={onCountry}/>
+                        </div> 
+                        <div className={styles.display}>
+                            <Display onDisplay={onDisplay}/>
+                        </div>                    
+                    </div>
                 </div> 
-                <div className={styles.display}>
-                    <Display onDisplay={onDisplay}/>
-                </div>                    
-            </div> 
-            </div> 
+            </section> 
             <div className={styles.guidance}>
                 <Guidance query={query} movie={movieItem}/>
             </div>

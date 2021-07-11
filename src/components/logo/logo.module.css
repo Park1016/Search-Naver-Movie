@@ -1,14 +1,13 @@
 ﻿.back {
   display: flex;
   align-items: center;
-  justify-content: center;
-  transform: translateX(-28rem) rotate(-40deg);
-  /* background-color: rgb(255, 255, 255, 0.5); */
+  justify-content: flex-end;
+  transform: translate(-5rem, 2.5rem) rotate(-40deg);
   background-color: rgb(0, 0, 0, 0.1);
-  position: absolute;
+  /* transform: translateX(-28rem) rotate(-40deg); */
+  /* position: absolute; */
   width: 20rem;
-  height: 50rem;
-  /* border-radius: 50%; */
+  height: 30rem;
 }
 
 .logoDiv {
@@ -18,23 +17,15 @@
   justify-content: center;
   cursor: pointer;
   transition: all 200ms ease-in-out;
-  transform: translateX(-20rem);
-  position: absolute;
-}
-
-.logoDiv:hover {
-  /* transform: scale(1.01); */
-  transform: translateX(-20.1rem);
+  transform: translateX(-1rem) rotate(40deg);
+  /* transform: translateX(-20rem); */
+  /* position: absolute; */
 }
 
 .logo {
-  /* color: #99a6de; */
-  /* color: darkgray; */
   color: white;
-  /* color: #7bd7d5; */
   font-weight: bold;
   line-height: 1;
   transform: translateY(0.2rem);
-  width: 10rem;
-  /* text-shadow: white 0.1rem 0.1rem 0.3rem; */
+  width: 7rem;
 }
