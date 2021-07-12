@@ -172,15 +172,42 @@ const MoviePage = memo(({naver}) => {
             if(window.innerWidth > 1191){
                 return;
             }
-            if(e.target.classList.contains('fa-bars') | e.target.classList.contains('moviePage_toggle__1uR4Q')){
-                toggle.current.style.display = 'flex';
-                arrow.current.style.display = 'block';
-            }else{
+            if(toggle.current.style.display == 'none'){
+                if(e.target.classList.contains('moviePage_toggle__1uR4Q')){
+                    toggle.current.style.display = 'flex';
+                    arrow.current.style.display = 'block';
+                }
+            }
+            if(toggle.current.style.display == 'flex'){
+                if(e.target.classList.contains('moviePage_toggle__1uR4Q')|e.target.classList.contains('fa-bars')){                   
+                    return;
+                }
                 toggle.current.style.display = 'none';
                 arrow.current.style.display = 'none';
             }
         })
     })
+
+    // const onPageClick = (e) => {
+    //     if(window.innerWidth > 1191){
+    //         return;
+    //     }
+    //     if(toggle.current.style.display == 'none'){
+    //         console.log('???');
+    //         // if(e.target.classList.contains('moviePage_toggle__1uR4Q')){
+    //         //     toggle.current.style.display = 'flex';
+    //         //     arrow.current.style.display = 'block';
+    //         // }
+    //     }
+    //     if(toggle.current.style.display == 'flex'){
+    //         console.log('!!!');
+    //         // if(e.target.classList.contains('moviePage_toggle__1uR4Q')){                   
+    //         //     return;
+    //         // }
+    //         // toggle.current.style.display = 'none';
+    //         // arrow.current.style.display = 'none';
+    //     }
+    // };
 
     return (
         <>
