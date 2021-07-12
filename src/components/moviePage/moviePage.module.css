@@ -113,7 +113,7 @@
   }
 
   .arrow {
-    display: block;
+    display: none;
     position: absolute;
     width: 1rem;
     height: 1rem;

@@ -35,21 +35,21 @@ const Guidance = ({query, movie}) => {
     };
     
     const onSlide = () => { 
-        showSlide = setInterval(() => {    
-        if(image.current.style.display == 'none'){
-            clearInterval(showSlide);
-        }          
-        if(i > image.current.childNodes.length-1){
-            i = 0;
-        }
+        showSlide = setInterval(() => {
+                if(image.current.style.display == 'none'){
+                    clearInterval(showSlide);
+                }          
+                if(i > image.current.childNodes.length-1){
+                    i = 0;
+                }
+                
+                image.current.childNodes[0].style.transform = 'translateX(-6rem) scale(0)';
+                image.current.childNodes[1].style.transform = 'translateX(-6rem) scale(0)';
+                image.current.childNodes[2].style.transform = 'translateX(-6rem) scale(0)';
+                image.current.childNodes[3].style.transform = 'translateX(-6rem) scale(0)';
+                image.current.childNodes[i].style.transform = 'translateX(-6rem) scale(1)';
         
-        image.current.childNodes[0].style.transform = 'translateX(-6rem) scale(0)';
-        image.current.childNodes[1].style.transform = 'translateX(-6rem) scale(0)';
-        image.current.childNodes[2].style.transform = 'translateX(-6rem) scale(0)';
-        image.current.childNodes[3].style.transform = 'translateX(-6rem) scale(0)';
-        image.current.childNodes[i].style.transform = 'translateX(-6rem) scale(1)';
-
-        i++;          
+                i++;              
         }, 3000);
     }
 

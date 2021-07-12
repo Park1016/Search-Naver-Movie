@@ -101,18 +101,7 @@ const MoviePage = memo(({naver}) => {
     
     
     
-    useEffect(()=>{
-        if(query == ''){
-        return;
-        }
-        if(country == undefined){
-        country = '';
-        }
-        if(display == undefined){
-        display = 10;
-        }
-        onInputMount();
-    });
+    
     
     const onCheck = () => {
         if(movie!=undefined){
@@ -153,7 +142,45 @@ const MoviePage = memo(({naver}) => {
         }
     }
 
+    useEffect(()=>{
+        if(query == ''){
+        return;
+        }
+        if(country == undefined){
+        country = '';
+        }
+        if(display == undefined){
+        display = 10;
+        }
+        onInputMount();
+    });
 
+    useEffect(()=>{
+        window.addEventListener('resize', ()=>{
+            if(window.innerWidth < 1191){
+                toggle.current.style.display = 'none';
+                arrow.current.style.display = 'none';
+                return;
+            };
+            toggle.current.style.display = 'flex';
+            arrow.current.style.display = 'block';
+        })
+    });
+
+    useEffect(()=>{
+        window.addEventListener('click', (e)=>{
+            if(window.innerWidth > 1191){
+                return;
+            }
+            if(e.target.classList.contains('fa-bars') | e.target.classList.contains('moviePage_toggle__1uR4Q')){
+                toggle.current.style.display = 'flex';
+                arrow.current.style.display = 'block';
+            }else{
+                toggle.current.style.display = 'none';
+                arrow.current.style.display = 'none';
+            }
+        })
+    })
 
     return (
         <>
