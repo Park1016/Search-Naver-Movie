@@ -36,12 +36,14 @@ const MoviePage = memo(({naver}) => {
 
     function onInputMount(){
         if(prevQuery == query){
-        return;
+            return;
         }
         if(prevQuery != query){
-        naver.onLoad(query, display, country, prevYear.from, prevYear.to).then((result)=>setMovie(result));       
-        setPrevQuery(query);
-        }
+            naver.onLoad(query, display, country, prevYear.from, prevYear.to)//
+            .then((result)=>setMovie(result))//
+            .then(() => onNavBarWidth());       
+            setPrevQuery(query);
+        }    
     };
     
 
@@ -56,7 +58,7 @@ const MoviePage = memo(({naver}) => {
 
     function onYearMount(year){
         if(prevYear == year){
-        return;
+            return;
         }
         if(prevYear != year){    
             naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
@@ -100,40 +102,16 @@ const MoviePage = memo(({naver}) => {
 
     const onCheck = () => {
         if(movie!=undefined){
-        let movieItems = [];
-        movieItems = movie;
-        return movieItems;
+            let movieItems = [];
+            movieItems = movie;
+            return movieItems;
         }
     };
 
     let movieItems = onCheck();
     let movieItem = movieItems.items;
 
-    if(movieItem != undefined){
-        if(movieItem.length == 0){
-            onChangeWidth();
-            movieList.current.style.display = 'none';
-        }
-        if(movieItem.length != 0){
-            if(page.scrollHeight != 0 && page.scrollHeight != 575){
-                console.log(page.scrollHeight);
-                onScrollChangeWidth();
-                movieList.current.style.display = 'flex';
-            }else{
-                onChangeWidth();
-                movieList.current.style.display = 'flex';
-            }
-        }
-    }
-
-    function onScrollChangeWidth(){
-        form.current.style.width = 'calc(100vw - 10px)';
-    }
-
-    function onChangeWidth(){
-        form.current.style.width = '100vw';
-    }
-
+    
     const onToggle = () => {
         if(toggle.current.style.display == 'flex'){
             toggle.current.style.display = 'none';
@@ -142,7 +120,31 @@ const MoviePage = memo(({naver}) => {
             toggle.current.style.display = 'flex';
             arrow.current.style.display = 'block';
         }
+    };
+
+    function onScrollChangeWidth(){
+        form.current.style.width = 'calc(100vw - 10px)';
+    };
+
+    function onChangeWidth(){
+        form.current.style.width = '100vw';
+    };
+
+
+    function onNavBarWidth(){
+        if(page.scrollHeight <= 575 && page.scrollHeight > 241){
+            onChangeWidth();
+            movieList.current.style.display = 'flex';
+        }else if(page.scrollHeight == 241){
+            onChangeWidth();
+            movieList.current.style.display = 'none';
+        }
+        else{
+            onScrollChangeWidth();
+            movieList.current.style.display = 'flex';
+        }
     }
+
 
     useEffect(()=>{
         if(query == ''){
@@ -159,13 +161,15 @@ const MoviePage = memo(({naver}) => {
 
     useEffect(()=>{
         window.addEventListener('resize', ()=>{
-            if(window.innerWidth < 1191){
-                toggle.current.style.display = 'none';
-                arrow.current.style.display = 'none';
-                return;
-            };
-            toggle.current.style.display = 'flex';
-            arrow.current.style.display = 'block';
+            if(toggle.current != null){
+                if(window.innerWidth < 1191){
+                    toggle.current.style.display = 'none';
+                    arrow.current.style.display = 'none';
+                    return;
+                };
+                toggle.current.style.display = 'flex';
+                arrow.current.style.display = 'block';
+            }
         })
     });
 
