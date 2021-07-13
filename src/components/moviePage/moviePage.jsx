@@ -9,7 +9,7 @@ import Display from '../display/display';
 import Guidance from '../guidance/guidance';
 import { v4 as uuid } from 'uuid';
 import Logo from '../logo/logo';
-import { symbol } from 'prop-types';
+
 
 const MoviePage = memo(({naver}) => {
 
@@ -27,7 +27,7 @@ const MoviePage = memo(({naver}) => {
     let [display, setDisplay] = useState(50);
     let [country, setCountry] = useState('');
 
-
+    const page = document.querySelector('.moviePage_movie__FZ7NS');
 
     const onInput = (query) => {
         setQuery(query);
@@ -62,7 +62,6 @@ const MoviePage = memo(({naver}) => {
             naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
             setPrevYear(year);
         }
-        console.log(year);
     };
 
     const onReset = () => {
@@ -98,11 +97,7 @@ const MoviePage = memo(({naver}) => {
         naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
     };
 
-    
-    
-    
-    
-    
+
     const onCheck = () => {
         if(movie!=undefined){
         let movieItems = [];
@@ -118,9 +113,16 @@ const MoviePage = memo(({naver}) => {
         if(movieItem.length == 0){
             onChangeWidth();
             movieList.current.style.display = 'none';
-        }else{
-            onScrollChangeWidth();
-            movieList.current.style.display = 'flex';
+        }
+        if(movieItem.length != 0){
+            if(page.scrollHeight != 0 && page.scrollHeight != 575){
+                console.log(page.scrollHeight);
+                onScrollChangeWidth();
+                movieList.current.style.display = 'flex';
+            }else{
+                onChangeWidth();
+                movieList.current.style.display = 'flex';
+            }
         }
     }
 
@@ -144,13 +146,13 @@ const MoviePage = memo(({naver}) => {
 
     useEffect(()=>{
         if(query == ''){
-        return;
+            return;
         }
         if(country == undefined){
-        country = '';
+            country = '';
         }
         if(display == undefined){
-        display = 10;
+            display = 10;
         }
         onInputMount();
     });
@@ -169,7 +171,7 @@ const MoviePage = memo(({naver}) => {
 
     useEffect(()=>{
         window.addEventListener('click', (e)=>{
-            if(window.innerWidth > 1191){
+            if(window.innerWidth > 1191 | toggle.current == null){
                 return;
             }
             if(toggle.current.style.display == 'none'){

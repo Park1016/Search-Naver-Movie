@@ -68,7 +68,6 @@
   padding: 3rem 2rem 0 2rem;
   margin: 6.92rem 0 5rem 0;
   background-color: white;
-  /* background-color: #eff6f8; */
   border: 1px solid #e3e3e3;
   border-radius: 10px;
 }
@@ -103,7 +102,6 @@
     width: 18rem;
     height: 10rem;
     padding: 1rem;
-    /* background-color: rgb(119, 224, 212, 0.5); */
     background-color: #b8ece6;
     border-radius: 10px;
     box-shadow: 5px 5px 10px #adadad;
@@ -118,9 +116,6 @@
     width: 1rem;
     height: 1rem;
     background-color: #b8ece6;
-    /* background-color: black; */
-    /* top: 0.01rem; */
-    /* right: 8rem; */
     z-index: 1;
     transform: rotate(45deg) translate(-0.1rem, 0.8rem);
   }
@@ -142,5 +137,11 @@
 @media screen and (max-width: 480px) {
   .arrow {
     display: none;
+  }
+  .input {
+    margin-right: 0rem;
+  }
+  .options {
+    margin: 0 1rem;
   }
 }

@@ -71,7 +71,6 @@ const MovieList = memo(({movie}) => {
                             </li>
                         </ul>
                     </div>
-                    {/* <i onClick={onHideModal} className="fas fa-window-close"></i> */}
                     <button className={styles.button} onClick={onHideModal}>확인
                         <button className={styles.line}></button>
                     </button>

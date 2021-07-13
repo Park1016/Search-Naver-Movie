@@ -9,17 +9,13 @@
   width: 14rem;
   height: 2rem;
   border: none;
-  /* border-radius: 10px 0 0 10px; */
   caret-color: black;
 }
 
 .btn {
   width: 3rem;
   height: 2rem;
-  /* border-radius: 0 10px 10px 0; */
   cursor: pointer;
-  /* background-color: #546de5; */
-  /* background-color: #99a6de; */
   background-color: #859dc6;
   color: white;
   font-weight: bold;
@@ -44,5 +40,15 @@
 
   .input {
     width: 17rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form {
+    width: 19rem;
+  }
+
+  .input {
+    width: 13rem;
   }
 }

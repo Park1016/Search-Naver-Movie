@@ -30,14 +30,6 @@ const CountryCode = ({onCountry}) => {
             onClick={(e)=>onClick(e)}
             showSearch
             placeholder="국가별 검색"
-            // style={{ width: 200 }}
-            // optionFilterProp="children"
-            // filterOption={(input, option) =>
-            // option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            // }
-            // filterSort={(optionA, optionB) =>
-            // optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-            // }
         >
             <Option value="">All</Option>
             <Option value="KR">한국</Option>
