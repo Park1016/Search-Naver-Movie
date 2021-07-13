@@ -178,36 +178,30 @@ const MoviePage = memo(({naver}) => {
                     arrow.current.style.display = 'block';
                 }
             }
+            // blur이벤트 리액트에 적용시키기 실패ㅠㅠ
+            // toggle창 숨길 요소들 일일이 지정...
             if(toggle.current.style.display == 'flex'){
-                if(e.target.classList.contains('moviePage_toggle__1uR4Q')|e.target.classList.contains('fa-bars')){                   
+                if(e.target.classList.contains('input_input__1tBiL')|
+                e.target.classList.contains('input_btn__2MyKN')|
+                e.target.classList.contains('app_moviePage__3RJPj')|
+                e.target.classList.contains('moviePage_movieList__3pSfX')|
+                e.target.classList.contains('moviePage_options__NvghN')|
+                e.target.classList.contains('guidance_section__2HD9S')|
+                e.target.classList.contains('moviePage_movie__FZ7NS')|
+                e.target.classList.contains('moviePage_logo__3lWdu')|
+                e.target.classList.contains('moviePage_form__3Aatt')|
+                e.target.classList.contains('logo_back__pY3--')|
+                e.target.tagName == 'IMG'|
+                e.target.tagName == 'H1'|
+                e.target.tagName == 'LI'){
+                    toggle.current.style.display = 'none';
+                    arrow.current.style.display = 'none';
                     return;
                 }
-                toggle.current.style.display = 'none';
-                arrow.current.style.display = 'none';
             }
         })
     })
 
-    // const onPageClick = (e) => {
-    //     if(window.innerWidth > 1191){
-    //         return;
-    //     }
-    //     if(toggle.current.style.display == 'none'){
-    //         console.log('???');
-    //         // if(e.target.classList.contains('moviePage_toggle__1uR4Q')){
-    //         //     toggle.current.style.display = 'flex';
-    //         //     arrow.current.style.display = 'block';
-    //         // }
-    //     }
-    //     if(toggle.current.style.display == 'flex'){
-    //         console.log('!!!');
-    //         // if(e.target.classList.contains('moviePage_toggle__1uR4Q')){                   
-    //         //     return;
-    //         // }
-    //         // toggle.current.style.display = 'none';
-    //         // arrow.current.style.display = 'none';
-    //     }
-    // };
 
     return (
         <>

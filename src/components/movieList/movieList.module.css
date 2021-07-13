@@ -56,11 +56,6 @@
   font-weight: bold;
   text-align: left;
   width: 10rem;
-  /* width: 3rem;
-  color: white;
-  background-color: #859dc6;
-  text-align: center;
-  border-radius: 10px; */
 }
 
 .none {
@@ -174,6 +169,7 @@
   border: none;
   outline: none;
   transform: rotate(25deg) translate(-5rem, -3rem);
+  cursor: pointer;
 }
 
 .button:hover > .line {
