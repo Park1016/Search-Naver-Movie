@@ -121,6 +121,12 @@
   }
 }
 
+@media screen and (max-width: 917px) {
+  .movieList {
+    width: 80%;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .logo {
     display: none;
@@ -131,6 +137,25 @@
   .options {
     justify-content: center;
     margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .movieList {
+    padding: 9rem 2rem 0 2rem;
+    margin: 1.5rem 0 5rem 0;
+  }
+}
+
+@media screen and (max-width: 563px) {
+  .movieList {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .movieList {
+    padding-top: 6rem;
   }
 }
 

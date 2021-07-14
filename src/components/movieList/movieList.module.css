@@ -14,6 +14,8 @@
 }
 
 .posterArea {
+  padding: 0;
+  margin: 0;
   margin-bottom: 0.5rem;
 }
 
@@ -36,6 +38,16 @@
   height: 15rem;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.textArea {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .title {
@@ -182,5 +194,91 @@
 
   100% {
     transform: rotate(25deg) translate(-5rem, 3rem);
+  }
+}
+
+@media screen and (max-width: 665px) {
+}
+
+@media screen and (max-width: 500px) {
+  .content {
+    flex-direction: row;
+    justify-content: center;
+    width: 24rem;
+    height: 17rem;
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .posterArea {
+    margin: 0;
+  }
+
+  .poster {
+    cursor: default;
+  }
+
+  .textArea {
+    width: 10rem;
+    text-align: left;
+    margin-left: 1.5rem;
+    word-break: keep-all;
+  }
+
+  .none {
+    display: flex;
+    text-align: left;
+  }
+
+  .title {
+    margin-bottom: 0.5rem;
+  }
+
+  .director {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .subTitle,
+  .actor {
+    margin-bottom: 0.5rem;
+  }
+
+  .subTitle,
+  .actor {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .rate {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+  }
+
+  .rateText {
+    margin: 0;
+  }
+
+  .link {
+    display: flex;
+    justify-content: center;
+    width: 3rem;
+    background-color: #859dca;
+    border-radius: 10px;
+  }
+
+  .linkText {
+    color: white;
+  }
+
+  .link:hover > .linkText {
+    color: white;
+  }
+
+  .link:hover {
+    transform: scale(1.01);
   }
 }

@@ -132,7 +132,7 @@ const MoviePage = memo(({naver}) => {
 
 
     function onNavBarWidth(){
-        if(page.scrollHeight <= 575 && page.scrollHeight > 241){
+        if(page.scrollHeight <= 584 && page.scrollHeight > 241){
             onChangeWidth();
             movieList.current.style.display = 'flex';
         }else if(page.scrollHeight == 241){

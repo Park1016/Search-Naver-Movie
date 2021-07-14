@@ -1,5 +1,12 @@
 ﻿.fa-star {
   color: yellow;
+  margin: auto;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.fa-star::before {
+  margin-right: 0.5rem;
 }
 
 .fa-window-close {

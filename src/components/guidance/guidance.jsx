@@ -6,6 +6,8 @@ const Guidance = ({query, movie}) => {
     const text = useRef();
     const guidanceText = useRef();
     const image = useRef();
+    const page = document.querySelector('.moviePage_movie__FZ7NS');
+
     let showSlide;
     let i = 1;
     
@@ -13,7 +15,11 @@ const Guidance = ({query, movie}) => {
         if(query){
             if(movie != undefined){
                 if(movie.length != 0){
-                    text.current.textContent = `"${query}" 의 검색결과입니다`;
+                    if(page.clientWidth <= 740){
+                        text.current.innerHTML = `"${query}" 의<br/>검색결과입니다`;
+                    }else{
+                        text.current.textContent = `"${query}" 의 검색결과입니다`;
+                    }
                     image.current.style.display = 'none';
                     guidanceText.current.setAttribute('class', 'fillContent');
                     return;
@@ -53,6 +59,9 @@ const Guidance = ({query, movie}) => {
         }, 3000);
     }
 
+    useEffect(()=>{
+        window.addEventListener('resize', onCheck);
+    })
 
     useEffect(()=>{
         onCheck();
@@ -68,7 +77,7 @@ const Guidance = ({query, movie}) => {
             </div>
             <div ref={guidanceText} className={styles.guidanceText}>
                 <i className="fas fa-film"></i>
-                <h1 ref={text} className={styles.h1}> </h1>
+                <h1 ref={text} className={styles.text}> </h1>
             </div>
         </section>       
     )

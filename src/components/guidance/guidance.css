@@ -31,6 +31,16 @@
 }
 
 .fa-film {
-  color: #7a7a7a;
+  /* color: #7a7a7a; */
+  color: #859dc6;
   font-size: 1.5rem;
+}
+
+@media screen and (max-width: 665px) {
+  .fillContent {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 0.5rem 2rem;
+  }
 }
