@@ -9,6 +9,27 @@
   cursor: pointer;
 }
 
+.fa-arrow-up {
+  font-size: 1.5rem;
+  background-color: #859dc6;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0.5rem;
+  margin: auto;
+  cursor: pointer;
+
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  /* transform: translate(15rem, 35rem); */
+  z-index: 20;
+}
+
+.fa-arrow-up:hover {
+  transform: translateY(-0.1rem);
+}
+
 @media screen and (max-width: 1191px) {
   .fa-bars {
     display: block;

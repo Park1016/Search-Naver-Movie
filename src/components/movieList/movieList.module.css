@@ -7,10 +7,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 1rem;
 }
 
 .content:hover {
   transform: scale(1.01);
+}
+
+.subTitle,
+.actor,
+.mActor,
+.title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .posterArea {
@@ -263,6 +274,10 @@
     text-align: left;
   }
 
+  .actor {
+    display: -webkit-box;
+  }
+
   .title {
     margin-bottom: 0.5rem;
   }
@@ -276,16 +291,6 @@
   .subTitle,
   .actor {
     margin-bottom: 0.5rem;
-  }
-
-  .subTitle,
-  .actor,
-  .mActor,
-  .title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .rate {
@@ -316,5 +321,45 @@
 
   .link:hover {
     transform: scale(1.01);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .content {
+    height: 15rem;
+  }
+
+  .poster,
+  .posterBlur,
+  .posterBack {
+    width: 7rem;
+    height: 10.5rem;
+  }
+
+  .title,
+  .subtitle,
+  .actor,
+  .rate {
+    margin-bottom: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 345px) {
+  .content {
+    height: 15rem;
+  }
+
+  .poster,
+  .posterBlur,
+  .posterBack {
+    width: 5rem;
+    height: 7.5rem;
+  }
+
+  .title,
+  .subtitle,
+  .actor,
+  .rate {
+    margin-bottom: 0.3rem;
   }
 }

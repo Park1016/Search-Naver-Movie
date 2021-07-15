@@ -23,6 +23,7 @@ const Input = memo(({input}) => {
         onInput();
     }
 
+
     return (
         <form className={styles.form}>
             <input ref={inputValue} className={styles.input} onKeyDown={(e)=>onKeyDown(e)} type='text' placeholder='검색할 영화제목을 입력해주세요'></input>

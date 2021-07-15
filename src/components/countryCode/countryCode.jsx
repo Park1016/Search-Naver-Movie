@@ -30,6 +30,7 @@ const CountryCode = ({onCountry}) => {
             onClick={(e)=>onClick(e)}
             showSearch
             placeholder="국가별 검색"
+            readOnly
         >
             <Option value="">All</Option>
             <Option value="KR">한국</Option>

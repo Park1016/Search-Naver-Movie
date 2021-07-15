@@ -28,6 +28,7 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
         let start = pick.current.firstElementChild.children.item(0).firstElementChild.value;
         let end = pick.current.firstElementChild.children.item(2).firstElementChild.value;
         if(movie.length == 0){
+            // onResetYear();
             // onInputClick();
             // return;
         }
@@ -180,9 +181,9 @@ const YearPick = memo(({onYear, onReset, query, movie}) => {
                 </div>
             </div>
             {/* <h1 ref={guidance} className={styles.guidance}></h1> */}
-            <Space onClick={(e)=>onInputClick(e)} direction="vertical" size={12}>
+            <Space onClick={(e)=>onInputClick(e)} direction="vertical" size={12} readOnly>
                 <div ref={pick} className={styles.yearPick}>
-                    <RangePicker onChange={onInputChange} picker="year" bordered={false} />
+                    <RangePicker onChange={onInputChange} picker="year" bordered={false} readOnly/>
                 </div>
             </Space>
             {/* <Rate allowHalf defaultValue={0} /> */}

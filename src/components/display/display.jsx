@@ -27,6 +27,7 @@ const Display = ({onDisplay}) => {
             onClick={(e)=>onClick(e)}
             showSearch
             placeholder="영화 개수"
+            readOnly
         >
             <Option value="10">10</Option>
             <Option value="20">20</Option>

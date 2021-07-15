@@ -9,9 +9,10 @@ import Display from '../display/display';
 import Guidance from '../guidance/guidance';
 import { v4 as uuid } from 'uuid';
 import Logo from '../logo/logo';
+// import { Keyboard } from 'react-native';
 
 
-const MoviePage = memo(({naver}) => {
+const MoviePage = memo(({naver, moviePage}) => {
 
     const form = useRef();
     const movieList = useRef();
@@ -19,6 +20,7 @@ const MoviePage = memo(({naver}) => {
     const arrow = useRef();
 
     const [movie, setMovie] = useState([]);
+
     let [prevQuery, setPrevQuery] = useState('');
     let [prevYear, setPrevYear] = useState({from: '', to: ''});
 
@@ -27,7 +29,20 @@ const MoviePage = memo(({naver}) => {
     let [display, setDisplay] = useState(50);
     let [country, setCountry] = useState('');
 
-    const page = document.querySelector('.moviePage_movie__FZ7NS');
+    const allPage = document.querySelector('.app_moviePage__3RJPj');
+
+
+    const onCheck = () => {
+        if(movie!=undefined){
+            let movieItems = [];
+            movieItems = movie;
+            return movieItems;
+        }
+    };  
+
+    let movieItems = onCheck();
+    let movieItem = movieItems.items;
+
 
     const onInput = (query) => {
         setQuery(query);
@@ -40,8 +55,7 @@ const MoviePage = memo(({naver}) => {
         }
         if(prevQuery != query){
             naver.onLoad(query, display, country, prevYear.from, prevYear.to)//
-            .then((result)=>setMovie(result))//
-            .then(() => onNavBarWidth());       
+            .then((result)=>setMovie(result));     
             setPrevQuery(query);
         }    
     };
@@ -100,18 +114,6 @@ const MoviePage = memo(({naver}) => {
     };
 
 
-    const onCheck = () => {
-        if(movie!=undefined){
-            let movieItems = [];
-            movieItems = movie;
-            return movieItems;
-        }
-    };
-
-    let movieItems = onCheck();
-    let movieItem = movieItems.items;
-
-    
     const onToggle = () => {
         if(toggle.current.style.display == 'flex'){
             toggle.current.style.display = 'none';
@@ -132,19 +134,56 @@ const MoviePage = memo(({naver}) => {
 
 
     function onNavBarWidth(){
-        if(page.scrollHeight <= 584 && page.scrollHeight > 241){
-            onChangeWidth();
-            movieList.current.style.display = 'flex';
-        }else if(page.scrollHeight == 241){
-            onChangeWidth();
-            movieList.current.style.display = 'none';
+        if(movieItem != undefined){
+            if(movieItem.length != 0){
+                movieList.current.style.display = 'flex';
+                if(moviePage.current.clientHeight != moviePage.current.scrollHeight){
+                    onScrollChangeWidth();
+                }else{
+                    onChangeWidth();
+                }
+            }
+            else{
+                onChangeWidth();
+                movieList.current.style.display = 'none';
+            }
         }
-        else{
-            onScrollChangeWidth();
-            movieList.current.style.display = 'flex';
+    };
+
+    const onScrollUp = () => {
+        if(!allPage){
+            return;
         }
+        allPage.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 
+
+    // function onKeyboard(){
+    //     if(moviePage.current.clientHeight == moviePage.current.scrollHeight){
+    //         onChangeWidth();
+    //     }else{
+    //         onScrollChangeWidth();
+    //     }
+    // };
+
+    // const onKeyboardDown = () => {
+    //     document.activeElement.focus();
+    // };
+
+    // useEffect(()=>{
+    //     window.addEventListener('resize', onKeyboard);
+    // });
+
+
+    
+
+
+    useEffect(()=>{
+        onNavBarWidth();
+    },[onInputMount]);
 
     useEffect(()=>{
         if(query == ''){
@@ -208,7 +247,21 @@ const MoviePage = memo(({naver}) => {
         })
     })
 
+    useEffect(()=>{
+        onScrollUp();
+    },[movieItem]);
 
+    
+    // useEffect(()=>{
+    //     Keyboard.addListener('keyboardDidShow',()=>{
+    //         console.log('키보드 보여진다!');
+    //     });
+    //     Keyboard.addListener('keyboardDidHide',()=>{
+    //         console.log('키보드 안보인다!');
+    //     });
+    // });
+
+    
     return (
         <>
             <section ref={form} className={styles.form}>
@@ -236,13 +289,14 @@ const MoviePage = memo(({naver}) => {
                 </div> 
             </section> 
             <div className={styles.guidance}>
-                <Guidance query={query} movie={movieItem}/>
+                <Guidance query={query} movie={movieItem} />
             </div>
             <div className={styles.movie}>
-                <div ref={movieList} className={movieItem ? styles.movieList : styles.none}>
+                <div ref={movieList} className={movieItem ? styles.movieList : styles.none} >
                     {movieItem && movieItem.map((item)=>
                     <MovieList key={uuid()} movie={item}/>
                     )}
+                    <i className="fas fa-arrow-up" onClick={onScrollUp} title="페이지 상단으로 이동"></i>
                 </div>
             </div>
         </>

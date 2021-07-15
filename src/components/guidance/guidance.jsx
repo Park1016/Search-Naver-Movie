@@ -3,8 +3,10 @@ import './guidance.css';
 import styles from './guidance.module.css';
 
 const Guidance = ({query, movie}) => {
+
     const text = useRef();
     const guidanceText = useRef();
+    const section = useRef();
     const image = useRef();
     const page = document.querySelector('.moviePage_movie__FZ7NS');
 
@@ -20,12 +22,18 @@ const Guidance = ({query, movie}) => {
                     }else{
                         text.current.textContent = `"${query}" 의 검색결과입니다`;
                     }
+                    section.current.style.transform = 'translateY(15rem)';
                     image.current.style.display = 'none';
                     guidanceText.current.setAttribute('class', 'fillContent');
                     return;
                 }
                 if(movie.length == 0){
-                    text.current.textContent = `"${query}" 의 검색결과가 없습니다`;
+                    if(page.clientWidth <= 740){
+                        text.current.innerHTML = `"${query}" 의<br/>검색결과가 없습니다`;
+                    }else{
+                        text.current.textContent = `"${query}" 의 검색결과가 없습니다`;
+                    }
+                    section.current.style.transform = 'translateY(calc(50vh - 8.5rem))';
                     image.current.style.display = 'block';
                     onSlide();
                     guidanceText.current.setAttribute('class', 'emptyContent');
@@ -34,28 +42,33 @@ const Guidance = ({query, movie}) => {
             }
         }else{
             text.current.textContent = '영화 제목을 검색해보세요!';
-            onSlide();
             guidanceText.current.setAttribute('class', 'emptyContent');
             return;
         }
     };
     
     const onSlide = () => { 
+        if(image.current == null){
+            return;
+        }
         showSlide = setInterval(() => {
-                if(image.current.style.display == 'none'){
-                    clearInterval(showSlide);
-                }          
-                if(i > image.current.childNodes.length-1){
-                    i = 0;
-                }
-                
-                image.current.childNodes[0].style.transform = 'translateX(-6rem) scale(0)';
-                image.current.childNodes[1].style.transform = 'translateX(-6rem) scale(0)';
-                image.current.childNodes[2].style.transform = 'translateX(-6rem) scale(0)';
-                image.current.childNodes[3].style.transform = 'translateX(-6rem) scale(0)';
-                image.current.childNodes[i].style.transform = 'translateX(-6rem) scale(1)';
-        
-                i++;              
+            if(!image.current){
+                return;
+            }
+            if(image.current.style.display == 'none'){
+                clearInterval(showSlide);
+            }          
+            if(i > image.current.childNodes.length-1){
+                i = 0;
+            }
+            
+            image.current.childNodes[0].style.transform = 'translateX(-6rem) scale(0)';
+            image.current.childNodes[1].style.transform = 'translateX(-6rem) scale(0)';
+            image.current.childNodes[2].style.transform = 'translateX(-6rem) scale(0)';
+            image.current.childNodes[3].style.transform = 'translateX(-6rem) scale(0)';
+            image.current.childNodes[i].style.transform = 'translateX(-6rem) scale(1)';
+
+            i++;              
         }, 3000);
     }
 
@@ -67,8 +80,12 @@ const Guidance = ({query, movie}) => {
         onCheck();
     }, [movie]);
 
+    useEffect(()=>{
+        onSlide();
+    },[]);
+
     return (
-        <section className={styles.section}>
+        <section ref={section} className={styles.section}>
             <div ref={image} className={styles.images}>
                 <img className={styles.popcorn} src="/images/popcorn.png" alt="이미지가 없습니다"></img>
                 <img className={styles.film} src="/images/film.png" alt="이미지가 없습니다"></img>

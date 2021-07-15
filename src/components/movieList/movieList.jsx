@@ -1,9 +1,9 @@
-﻿import React, { memo, useRef } from 'react';
+﻿import React, { memo, useEffect, useRef } from 'react';
 import styles from './movieList.module.css';
 import './movieList.css';
-import { symbol } from 'prop-types';
 
 const MovieList = memo(({movie}) => {
+
     const modal = useRef();
     const content = useRef();
 
@@ -48,6 +48,7 @@ const MovieList = memo(({movie}) => {
     const onHideModal = () => {
         modal.current.style.display = 'none';
     }
+
 
     return (
         <>
