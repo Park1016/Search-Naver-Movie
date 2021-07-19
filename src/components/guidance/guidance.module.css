@@ -9,7 +9,8 @@
 .popcorn,
 .cam,
 .readyAction,
-.film {
+.film,
+.empty {
   position: absolute;
   transform: translate(-6rem, 0) scale(0);
   width: 12rem;

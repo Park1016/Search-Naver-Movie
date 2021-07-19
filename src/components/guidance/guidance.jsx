@@ -35,7 +35,7 @@ const Guidance = ({query, movie}) => {
                     }
                     section.current.style.transform = 'translateY(calc(50vh - 8.5rem))';
                     image.current.style.display = 'block';
-                    onSlide();
+                    image.current.childNodes[4].style.transform = 'translateX(-6rem) scale(1)';
                     guidanceText.current.setAttribute('class', 'emptyContent');
                     return;
                 }
@@ -58,7 +58,7 @@ const Guidance = ({query, movie}) => {
             if(image.current.style.display == 'none'){
                 clearInterval(showSlide);
             }          
-            if(i > image.current.childNodes.length-1){
+            if(i > image.current.childNodes.length-2){
                 i = 0;
             }
             
@@ -91,6 +91,7 @@ const Guidance = ({query, movie}) => {
                 <img className={styles.film} src="/images/film.png" alt="이미지가 없습니다"></img>
                 <img className={styles.cam} src="/images/cam.png" alt="이미지가 없습니다"></img>
                 <img className={styles.readyAction} src="/images/readyAction.png" alt="이미지가 없습니다"></img>
+                <img className={styles.empty} src="/images/empty.png" alt="이미지가 없습니다"></img>
             </div>
             <div ref={guidanceText} className={styles.guidanceText}>
                 <i className="fas fa-film"></i>

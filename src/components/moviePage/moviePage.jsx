@@ -9,6 +9,7 @@ import Display from '../display/display';
 import Guidance from '../guidance/guidance';
 import { v4 as uuid } from 'uuid';
 import Logo from '../logo/logo';
+import Loading from '../loading/loading';
 // import { Keyboard } from 'react-native';
 
 
@@ -20,6 +21,8 @@ const MoviePage = memo(({naver, moviePage}) => {
     const arrow = useRef();
 
     const [movie, setMovie] = useState([]);
+
+    let [loading, setLoading] = useState(false);
 
     let [prevQuery, setPrevQuery] = useState('');
     let [prevYear, setPrevYear] = useState({from: '', to: ''});
@@ -54,6 +57,7 @@ const MoviePage = memo(({naver, moviePage}) => {
             return;
         }
         if(prevQuery != query){
+            setLoading(true);
             naver.onLoad(query, display, country, prevYear.from, prevYear.to)//
             .then((result)=>setMovie(result));     
             setPrevQuery(query);
@@ -74,7 +78,8 @@ const MoviePage = memo(({naver, moviePage}) => {
         if(prevYear == year){
             return;
         }
-        if(prevYear != year){    
+        if(prevYear != year){
+            setLoading(true);    
             naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));   
             setPrevYear(year);
         }
@@ -96,6 +101,7 @@ const MoviePage = memo(({naver, moviePage}) => {
     };
 
     function onCountryMount(country){
+        setLoading(true);  
         naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));  
     };
 
@@ -110,6 +116,7 @@ const MoviePage = memo(({naver, moviePage}) => {
     };
 
     function onDisplayMount(display){
+        setLoading(true);  
         naver.onLoad(query, display, country, year.from, year.to).then((result)=>setMovie(result));
     };
 
@@ -184,6 +191,14 @@ const MoviePage = memo(({naver, moviePage}) => {
     useEffect(()=>{
         onNavBarWidth();
     },[onInputMount]);
+    
+    // useEffect(()=>{
+    //     // if(naver.onLoad){
+    //         setLoading(true);
+    //     // }
+    //     // setLoading(false);
+    //     console.log(load);
+    // }, [naver.onLoad]);
 
     useEffect(()=>{
         if(query == ''){
@@ -248,6 +263,7 @@ const MoviePage = memo(({naver, moviePage}) => {
     })
 
     useEffect(()=>{
+        setLoading(false);
         onScrollUp();
     },[movieItem]);
 
@@ -291,6 +307,7 @@ const MoviePage = memo(({naver, moviePage}) => {
             <div className={styles.guidance}>
                 <Guidance query={query} movie={movieItem} />
             </div>
+            {loading && <Loading />}
             <div className={styles.movie}>
                 <div ref={movieList} className={movieItem ? styles.movieList : styles.none} >
                     {movieItem && movieItem.map((item)=>
