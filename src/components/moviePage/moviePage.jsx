@@ -10,7 +10,6 @@ import Guidance from '../guidance/guidance';
 import { v4 as uuid } from 'uuid';
 import Logo from '../logo/logo';
 import Loading from '../loading/loading';
-// import { Keyboard } from 'react-native';
 
 
 const MoviePage = memo(({naver, moviePage}) => {
@@ -168,37 +167,10 @@ const MoviePage = memo(({naver, moviePage}) => {
     }
 
 
-    // function onKeyboard(){
-    //     if(moviePage.current.clientHeight == moviePage.current.scrollHeight){
-    //         onChangeWidth();
-    //     }else{
-    //         onScrollChangeWidth();
-    //     }
-    // };
-
-    // const onKeyboardDown = () => {
-    //     document.activeElement.focus();
-    // };
-
-    // useEffect(()=>{
-    //     window.addEventListener('resize', onKeyboard);
-    // });
-
-
-    
-
-
     useEffect(()=>{
         onNavBarWidth();
     },[onInputMount]);
     
-    // useEffect(()=>{
-    //     // if(naver.onLoad){
-    //         setLoading(true);
-    //     // }
-    //     // setLoading(false);
-    //     console.log(load);
-    // }, [naver.onLoad]);
 
     useEffect(()=>{
         if(query == ''){
@@ -266,16 +238,6 @@ const MoviePage = memo(({naver, moviePage}) => {
         setLoading(false);
         onScrollUp();
     },[movieItem]);
-
-    
-    // useEffect(()=>{
-    //     Keyboard.addListener('keyboardDidShow',()=>{
-    //         console.log('키보드 보여진다!');
-    //     });
-    //     Keyboard.addListener('keyboardDidHide',()=>{
-    //         console.log('키보드 안보인다!');
-    //     });
-    // });
 
     
     return (

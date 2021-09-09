@@ -32,15 +32,18 @@ const MovieList = memo(({movie}) => {
         userRating = target.childNodes[1].childNodes[5].childNodes[1].textContent;
         link = target.childNodes[1].childNodes[6].childNodes[0].getAttribute('href');
 
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].setAttribute('src', image);
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[0].textContent = title;
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[1].textContent = date;
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[2].textContent = subTitle;
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[3].textContent = director;
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[4].textContent = actor;
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[5].setAttribute("class", "fa fa-star");
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[5].textContent = userRating;
-        modal.current.childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[6].childNodes[0].setAttribute('href', link);
+        const modalCurrent = modal.current.childNodes[0].childNodes[0].childNodes[0];
+        const modalList = modalCurrent.childNodes[1].childNodes[0];
+
+        modalCurrent.childNodes[0].childNodes[0].setAttribute('src', image);
+        modalList.childNodes[0].textContent = title;
+        modalList.childNodes[1].textContent = date;
+        modalList.childNodes[2].textContent = subTitle;
+        modalList.childNodes[3].textContent = director;
+        modalList.childNodes[4].textContent = actor;
+        modalList.childNodes[5].setAttribute("class", "fa fa-star");
+        modalList.childNodes[5].textContent = userRating;
+        modalList.childNodes[6].childNodes[0].setAttribute('href', link);
         modal.current.childNodes[0].style.backgroundImage = `url("${image}")`;
         modal.current.style.display = 'block';
     }

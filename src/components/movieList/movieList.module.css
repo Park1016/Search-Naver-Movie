@@ -91,6 +91,16 @@
   display: none;
 }
 
+@keyframes show {
+  from {
+    transform: translateY(-10rem);
+  }
+
+  to {
+    transform: translateY(0rem);
+  }
+}
+
 .modal {
   position: fixed;
   top: calc(50vh - 12.5rem);
@@ -100,6 +110,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 10px;
+  animation: show 500ms;
+  animation-iteration-count: 1;
+  animation-direction: normal;
 }
 
 .modalBlur {
