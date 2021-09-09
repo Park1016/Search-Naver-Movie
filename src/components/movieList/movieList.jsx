@@ -6,6 +6,7 @@ const MovieList = memo(({movie}) => {
 
     const modal = useRef();
     const content = useRef();
+    const modalContent =useRef();
 
     let image;
     let title;
@@ -49,14 +50,19 @@ const MovieList = memo(({movie}) => {
     }
 
     const onHideModal = () => {
-        modal.current.style.display = 'none';
+        modalContent.current.style.transform = 'translateY(-20rem)';
+        setTimeout(()=>{
+            modal.current.style.display = 'none';
+            modalContent.current.style.transform = 'translateY(0rem)';
+        },300);
     }
+
 
 
     return (
         <>
             <section ref={modal} className={styles.modalBack}>
-                <div className={styles.modal}>
+                <div ref={modalContent} className={styles.modal}>
                     <div className={styles.modalBlur}>
                         <ul className={styles.modalContents}>
                             <li>

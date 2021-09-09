@@ -113,6 +113,7 @@
   animation: show 500ms;
   animation-iteration-count: 1;
   animation-direction: normal;
+  transition: all 300ms ease-in-out;
 }
 
 .modalBlur {
