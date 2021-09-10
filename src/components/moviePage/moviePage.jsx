@@ -234,6 +234,8 @@ const MoviePage = memo(({naver, moviePage}) => {
         })
     })
 
+    let check = query.length !== 0;
+
     useEffect(()=>{
         setLoading(false);
         onScrollUp();
@@ -269,7 +271,7 @@ const MoviePage = memo(({naver, moviePage}) => {
             <div className={styles.guidance}>
                 <Guidance query={query} movie={movieItem} />
             </div>
-            {loading && <Loading />}
+            {(loading && check) && <Loading query={query}/>}
             <div className={styles.movie}>
                 <div ref={movieList} className={movieItem ? styles.movieList : styles.none} >
                     {movieItem && movieItem.map((item)=>
