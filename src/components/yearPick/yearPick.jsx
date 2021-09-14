@@ -8,17 +8,14 @@ const YearPick = memo(({ onYear, onReset }) => {
     const { RangePicker } = DatePicker;
     const pick = useRef();
     let [prev, setPrev] = useState('');
-    let [check, setCheck] = useState(false);
+    let [prevEnd, setPrevEnd] = useState('');
 
     const onInputChange = () => {     
-        setCheck(false);
         let start = pick.current.firstElementChild.children.item(0).firstElementChild.value;
         let end = pick.current.firstElementChild.children.item(2).firstElementChild.value;
-        if(prev === start){
-            if(!check){
-                onResetYear();
-                return;
-            }
+        if((prev === start)&&(end === prevEnd)){
+            onResetYear();
+            return;
         }
         if(start == '' && end != ''){
             start = end;
@@ -27,25 +24,12 @@ const YearPick = memo(({ onYear, onReset }) => {
             end = start;
         }  
         setPrev(start);
+        setPrevEnd(end);
         onYear(start, end);
     };
 
-    const onClick = () => {
-        setCheck(true);
-    }
-
-    const onChange = () => {
-        onInputChange();
-        setTimeout(()=>{
-            let start = pick.current.firstElementChild.children.item(0).firstElementChild.value;
-            if(prev === start){
-                setCheck(false);
-            }
-        },100);
-    }
-
-
     const onResetYear = () => {
+        console.log('reset');
         pick.current.firstElementChild.children.item(0).firstElementChild.value = '';
         pick.current.firstElementChild.children.item(2).firstElementChild.value = '';
         onReset();
@@ -54,8 +38,8 @@ const YearPick = memo(({ onYear, onReset }) => {
 
     return (
         <Space direction="vertical" size={12} readOnly>
-            <div ref={pick} onClick={onClick}>
-                <RangePicker onChange={onChange} picker="year" bordered={false} readOnly/>
+            <div ref={pick}>
+                <RangePicker onChange={onInputChange} picker="year" bordered={false} readOnly/>
             </div>
         </Space>
     )

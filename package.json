@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.16.6",
     "axios": "^0.21.1",
+    "browserslist": "^4.17.0",
+    "caniuse-lite": "^1.0.30001257",
     "customize-cra-less-loader": "^1.0.0",
     "firebase": "^8.7.0",
     "global": "^4.4.0",
