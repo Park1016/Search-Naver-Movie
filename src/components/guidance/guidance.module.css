@@ -31,7 +31,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: translateY(calc(50vh - 8.5rem));
+  transform: translateY(calc(50vh - 5.5rem));
 
   animation: guidance 2s;
   animation-iteration-count: 1;
@@ -40,10 +40,10 @@
 
 @keyframes guidance {
   from {
-    transform: translate(-50rem, calc(50vh - 8.5rem));
+    transform: translate(-50rem, calc(50vh - 5.5rem));
   }
 
   to {
-    transform: translate(0, calc(50vh - 8.5rem));
+    transform: translate(0, calc(50vh - 5.5rem));
   }
 }

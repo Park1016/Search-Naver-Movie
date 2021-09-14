@@ -33,7 +33,7 @@ const Guidance = ({query, movie}) => {
                     }else{
                         text.current.textContent = `"${query}" 의 검색결과가 없습니다`;
                     }
-                    section.current.style.transform = 'translateY(calc(50vh - 8.5rem))';
+                    section.current.style.transform = 'translateY(calc(50vh - 5.5rem))';
                     image.current.style.display = 'block';
                     image.current.childNodes[4].style.transform = 'translateX(-6rem) scale(1)';
                     guidanceText.current.setAttribute('class', 'emptyContent');
