@@ -67,3 +67,17 @@
   box-sizing: border-box;
   background-color: #f8f8f8;
 }
+
+.up {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5rem;
+  height: 2rem;
+  font-size: 1rem;
+  background: rgb(0, 0, 0, 0.5);
+  line-height: 2;
+  border-radius: 10px;
+  transform: translate(-1.3rem, -2.5rem);
+  caret-color: transparent;
+}

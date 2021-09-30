@@ -31,9 +31,6 @@ const MoviePage = memo(({naver, moviePage}) => {
     let [display, setDisplay] = useState(50);
     let [country, setCountry] = useState('');
 
-    const allPage = document.querySelector('.app_moviePage__3RJPj');
-
-
     const onCheck = () => {
         if(movie!=undefined){
             let movieItems = [];
@@ -156,17 +153,6 @@ const MoviePage = memo(({naver, moviePage}) => {
         }
     };
 
-    const onScrollUp = () => {
-        if(!allPage){
-            return;
-        }
-        allPage.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-
-
     useEffect(()=>{
         onNavBarWidth();
     },[onInputMount]);
@@ -238,7 +224,6 @@ const MoviePage = memo(({naver, moviePage}) => {
 
     useEffect(()=>{
         setLoading(false);
-        onScrollUp();
     },[movieItem]);
 
     
@@ -277,7 +262,6 @@ const MoviePage = memo(({naver, moviePage}) => {
                     {movieItem && movieItem.map((item)=>
                     <MovieList key={uuid()} movie={item}/>
                     )}
-                    <i className="fas fa-arrow-up" onClick={onScrollUp} title="페이지 상단으로 이동"></i>
                 </div>
             </div>
         </>
