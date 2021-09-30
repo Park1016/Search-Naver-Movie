@@ -9,13 +9,13 @@ const Loading = (props) => {
         <section className={styles.loadingBack}>
             <div className={styles.loading}>
                 <Spin tip="Loading...">
-                    <p className={styles.none}>
+                    <div className={styles.none}>
                         <Alert
                         message="Alert message title"
                         description="Further details about the context of this alert."
                         type="info"
                         />
-                    </p>
+                    </div>
                 </Spin>
             </div>
         </section>

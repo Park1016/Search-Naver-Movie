@@ -64,13 +64,13 @@ const MovieList = memo(({movie}) => {
             <section ref={modal} className={styles.modalBack}>
                 <div ref={modalContent} className={styles.modal}>
                     <div className={styles.modalBlur}>
-                        <ul className={styles.modalContents}>
-                            <li>
+                        <div className={styles.modalContents}>
+                            <div>
                                 <img className={styles.mPoster} alt="해당 영화의 포스터가 없습니다"
                                 onError={(e)=>{e.target.onerror = null; e.target.src="/images/noMoviePoster.png"}}
                                 />
-                            </li>
-                            <li>
+                            </div>
+                            <div>
                                 <ul className={styles.mTexts}>
                                     <li className={styles.mTitle}></li>
                                     <li className={styles.mDate}></li>
@@ -82,17 +82,17 @@ const MovieList = memo(({movie}) => {
                                         <a className={styles.mLinkText} target='_blank'>링크</a>
                                     </li>
                                 </ul>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                     <button className={styles.button} onClick={onHideModal}>확인
-                        <button className={styles.line}></button>
+                        <div className={styles.line}></div>
                     </button>
                 </div>
             </section>
 
             <section ref={content} className={styles.content}>     
-                <ul className={styles.posterArea}>
+                <div className={styles.posterArea}>
                     <div className={styles.posterBack} style={{backgroundImage:`url("${movie.image}")`}}>
                         <div className={styles.posterBlur}>
                             <img className={styles.poster} src={movie.image} alt="해당 영화의 포스터가 없습니다"
@@ -100,7 +100,7 @@ const MovieList = memo(({movie}) => {
                             onClick={e=>onClick(e)} title={`"${movie.title.replace(/<\/b>/gi,'').replace(/<b>/gi,' ')}" 상세보기`}/>
                         </div>
                     </div>
-                </ul>
+                </div>
                 <ul className={styles.textArea}>
                     <li className={styles.title}>{movie.title.replace(/<\/b>/gi,'').replace(/<b>/gi,' ')}</li>
                     <li className={styles.date}>{movie.pubDate}</li>
