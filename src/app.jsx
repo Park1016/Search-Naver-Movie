@@ -16,6 +16,7 @@ function App({naver}){
       setScroll(true);
     }else{
       setScroll(false);
+      setHover(false);
     }
   }
 
