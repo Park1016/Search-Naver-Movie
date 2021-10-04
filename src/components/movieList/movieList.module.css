@@ -280,6 +280,7 @@
   .textArea {
     width: 10rem;
     text-align: left;
+    margin: 1rem 0;
     margin-left: 1.5rem;
     word-break: keep-all;
   }
@@ -324,6 +325,7 @@
     width: 3rem;
     background-color: #859dca;
     border-radius: 10px;
+    margin-bottom: 1rem;
   }
 
   .linkText {
@@ -342,6 +344,8 @@
 @media screen and (max-width: 400px) {
   .content {
     height: 15rem;
+    font-size: 0.8rem;
+    margin-bottom: 0;
   }
 
   .poster,
@@ -356,6 +360,10 @@
   .actor,
   .rate {
     margin-bottom: 0.3rem;
+  }
+
+  .link {
+    margin-bottom: 0;
   }
 }
 
