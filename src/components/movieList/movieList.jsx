@@ -46,11 +46,11 @@ const MovieList = memo(({movie}) => {
         modalList.childNodes[5].textContent = userRating;
         modalList.childNodes[6].childNodes[0].setAttribute('href', link);
         modal.current.childNodes[0].style.backgroundImage = `url("${image}")`;
-        modal.current.style.display = 'block';
+        modal.current.style.display = 'flex';
     }
 
     const onHideModal = () => {
-        modalContent.current.style.transform = 'translateY(-20rem)';
+        modalContent.current.style.transform = 'translateY(-10rem)';
         setTimeout(()=>{
             modal.current.style.display = 'none';
             modalContent.current.style.transform = 'translateY(0rem)';
