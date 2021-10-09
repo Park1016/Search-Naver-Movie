@@ -15,10 +15,17 @@
 }
 
 @media screen and (max-width: 1191px) {
+  .ant-picker-panel-container {
+    transform: translateX(-18rem);
+  }
+}
+
+@media screen and (max-width: 620px) {
   .ant-picker-panel-container .ant-picker-panels {
     flex-direction: column;
   }
   .ant-picker-panel-container {
-    height: 38rem;
+    height: 21.6rem;
+    transform: translateX(0rem);
   }
 }
