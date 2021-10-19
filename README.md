@@ -27,6 +27,10 @@ https://search-naver-movie.netlify.app/
 
 <hr />
 
+#### 시연영상
+
+https://www.youtube.com/watch?v=tpHGeJiywH0
+
 #### 시작화면
 
 ![movie-시작화면](https://user-images.githubusercontent.com/76847993/136398395-9e26b3cf-092e-4b3f-85a0-77e80bc04b00.gif)
